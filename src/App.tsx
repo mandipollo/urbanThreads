@@ -18,6 +18,7 @@ import AccountSettings from "./pages/AccountSettings";
 import Membership from "./pages/Membership";
 import Orders from "./pages/Orders";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 let persistor = persistStore(store);
@@ -43,6 +44,7 @@ const Route = createBrowserRouter([
 			{ path: "/product/:gender/:productId", element: <Product /> },
 			{ path: "/userAuth", element: <UserAuth /> },
 			{ path: "/cart", element: <Cart /> },
+			{ path: "/checkout", element: <Checkout /> },
 
 			{
 				path: "/account",

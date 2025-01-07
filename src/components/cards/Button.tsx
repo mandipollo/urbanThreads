@@ -8,7 +8,7 @@ const Button: React.FC<{
 	return (
 		<button
 			type={type}
-			onClick={() => callback}
+			onClick={callback}
 			className="bg-black hover:bg-stone-800 text-white px-2  py-4"
 		>
 			{text}

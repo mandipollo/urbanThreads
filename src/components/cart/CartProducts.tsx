@@ -1,11 +1,18 @@
 import React from "react";
 import { CartProduct } from "../../types";
+import PriceSpan from "../cards/PriceSpan";
 
-const CartProducts: React.FC<{ cartItems: CartProduct[] }> = ({
-	cartItems,
-}) => {
+const CartProducts: React.FC<{
+	cartItems: CartProduct[];
+	handleRemoveProduct: (id: string) => void;
+}> = ({ cartItems, handleRemoveProduct }) => {
 	return (
 		<div className="flex flex-col">
+			{cartItems.length <= 0 && (
+				<div>
+					<h2>YOUR SHOPPING BAG IS EMPTY!</h2>
+				</div>
+			)}
 			<ul className="flex flex-col gap-10">
 				{cartItems.map(item => (
 					<li key={item._id} className="flex gap-2 flex-row">
@@ -20,40 +27,22 @@ const CartProducts: React.FC<{ cartItems: CartProduct[] }> = ({
 							<div>
 								<p className="text-lg">{item.name}</p>
 
-								<span className="flex">
-									£ <p className="font-medium">{item.price}</p>
-								</span>
+								<PriceSpan price={item.price} />
 							</div>
 
 							<p>Size {item.size}</p>
 							<p>Quantity</p>
 							<p>Total</p>
-
-							<div
-								aria-labelledby="quantity_control"
-								className="border w-32 h-14 grid grid-cols-3 text-center"
-							>
-								<h2
-									id="quantity_control"
-									aria-label="item quantity control"
-									className="sr-only"
-								></h2>
-								<button className="flex justify-center items-center">
-									<figure className="h-6 w-6">
+							<div>
+								<button
+									onClick={() => handleRemoveProduct(item._id)}
+									className="border p-2"
+								>
+									<figure className="h-4 w-4">
 										<img
-											src="/svg/minus.svg"
+											src="/svg/close.svg"
+											alt=""
 											className="h-full w-full object-cover"
-											alt="decrease quanity of item"
-										/>
-									</figure>
-								</button>
-								<p className="flex justify-center items-center">Q</p>
-								<button className="flex justify-center items-center">
-									<figure className="h-6 w-6">
-										<img
-											src="/svg/plus.svg"
-											className="h-full w-full object-cover"
-											alt="increase quantity of item"
 										/>
 									</figure>
 								</button>
