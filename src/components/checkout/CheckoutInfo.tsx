@@ -1,6 +1,13 @@
 import React, { SetStateAction } from "react";
-import Button from "../cards/Button";
 
+// components
+import Button from "../cards/Button";
+import { CartProduct } from "../../types";
+// state
+
+import { useAppDispatch } from "../../store/store";
+import { removeProduct } from "../../store/cartSlice";
+import { useDispatch } from "react-redux";
 interface CheckOutInfoProps {
 	userState: {
 		name: string;
@@ -18,6 +25,9 @@ interface CheckOutInfoProps {
 	postcode: string;
 	setPostcode: React.Dispatch<SetStateAction<string>>;
 	handleAddressUpdate: (e: React.FormEvent<HTMLFormElement>) => void;
+	editAddress: boolean;
+	setEditAddress: React.Dispatch<SetStateAction<boolean>>;
+	cartItems: CartProduct[];
 }
 const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	userState,
@@ -28,7 +38,16 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	postcode,
 	setPostcode,
 	handleAddressUpdate,
+	editAddress,
+	setEditAddress,
+	cartItems,
 }) => {
+	// handle product remove from cart
+
+	const dispatch = useAppDispatch();
+	const handleRemoveProduct = (id: string) => {
+		dispatch(removeProduct(id));
+	};
 	return (
 		<div
 			aria-label="personal user information section"
@@ -40,13 +59,23 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 				<p aria-label="user email">{userState.email}</p>
 			</div>
 
-			<h3 className="font-normal">BILLING ADDRESS</h3>
+			<h3 className="font-normal py-2">BILLING ADDRESS</h3>
 
-			{userState.address.postcode ? (
+			{!editAddress && userState.address.postcode ? (
 				<div className="border-b flex flex-col pb-10">
 					<p aria-label="user street">{userState.address.street}</p>
 					<p aria-label="user town">{userState.address.town}</p>
 					<p aria-label="user postcode">{userState.address.postcode}</p>
+					<div>
+						<button
+							type="button"
+							aria-label="toogle address form"
+							onClick={() => setEditAddress(!editAddress)}
+							className="underline p-2"
+						>
+							EDIT
+						</button>
+					</div>
 				</div>
 			) : (
 				<form
@@ -88,8 +117,45 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 					</div>
 
 					<Button text="SAVE" type="submit" />
+					<button
+						onClick={() => setEditAddress(false)}
+						className="border border-black p-4 hover:text-gray-600"
+						type="button"
+					>
+						CANCEL
+					</button>
 				</form>
 			)}
+
+			<div className="flex flex-col gap-2">
+				<h3 className="font-normal py-2">PARCEL</h3>
+				<p>Shipped by urbanThreads</p>
+				<ul className="flex flex-col md:flex-row gap-2">
+					{cartItems.map(item => (
+						<li key={item._id} className="relative">
+							<figure className="h-40 aspect-[3/4]">
+								<img
+									src={item.image}
+									alt={item.name}
+									className="h-full w-full "
+								/>
+							</figure>
+							<button
+								onClick={() => handleRemoveProduct(item._id)}
+								className="absolute bg-white p-4 bottom-0 right-0 "
+							>
+								<figure className=" h-4 w-4 ">
+									<img
+										src="/svg/bin.svg"
+										alt="remove item from the cart"
+										className="h-full w-full object-cover"
+									/>
+								</figure>
+							</button>
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 };

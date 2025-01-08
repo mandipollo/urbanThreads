@@ -28,12 +28,30 @@ const userSlice = createSlice({
 		setUser: (state, action: PayloadAction<UserState>) => {
 			return action.payload;
 		},
+		updateAddress: (
+			state,
+			action: PayloadAction<{
+				street?: string;
+				town?: string;
+				postcode?: string;
+			}>
+		) => {
+			if (action.payload.street) {
+				state.address.street = action.payload.street;
+			}
+			if (action.payload.town) {
+				state.address.town = action.payload.town;
+			}
+			if (action.payload.postcode) {
+				state.address.postcode = action.payload.postcode;
+			}
+		},
 		resetUser: () => {
 			return initialState;
 		},
 	},
 });
 
-export const { setUser, resetUser } = userSlice.actions;
+export const { setUser, resetUser, updateAddress } = userSlice.actions;
 
 export default userSlice.reducer;
