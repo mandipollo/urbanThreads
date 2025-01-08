@@ -3,11 +3,13 @@ import { backendUrl } from "../../App";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+// components
+import Button from "../cards/Button";
 // state management
 import { setToken } from "../../store/tokenSlice";
 import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
-import Button from "../cards/Button";
+import { setUser } from "../../store/userSlice";
 
 const Login: React.FC<{
 	signupInView: () => void;
@@ -26,9 +28,11 @@ const Login: React.FC<{
 			});
 
 			if (response.data.success) {
-				const { token } = response.data;
+				const { token, name, email, id, address } = response.data;
+				console.log(name, token, id, address, email);
 
 				dispatch(setToken(token));
+				dispatch(setUser({ name, email, _id: id, address }));
 				navigate("/account");
 			} else {
 				toast.error(response.data.message);

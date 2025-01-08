@@ -14,9 +14,10 @@ import {
 
 import tokenReducer from "./tokenSlice";
 import cartReducer from "./cartSlice";
+import userReducer from "./userSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-const rootReducer = combineReducers({ tokenReducer, cartReducer });
+const rootReducer = combineReducers({ tokenReducer, cartReducer, userReducer });
 
 const persistConfig = {
 	key: "root",

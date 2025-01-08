@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../store/store";
 import { removeToken } from "../store/tokenSlice";
 import { resetAll } from "../store/cartSlice";
+import { resetUser } from "../store/userSlice";
 
 const AccountSettings = () => {
 	const navigate = useNavigate();
@@ -11,6 +12,7 @@ const AccountSettings = () => {
 	const handleSignout = () => {
 		dispatch(removeToken());
 		dispatch(resetAll());
+		dispatch(resetUser());
 		navigate("/userAuth");
 	};
 

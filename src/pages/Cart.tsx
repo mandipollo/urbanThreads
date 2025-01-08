@@ -29,7 +29,7 @@ const Cart = () => {
 	};
 	return (
 		<section className="flex flex-col h-full w-full p-2 min-h-screen">
-			<h2 className="text-6xl font-semibold pt-10 pb-16">SHOPPING BAG</h2>
+			<h2 className="text-5xl font-semibold pt-10 pb-16">SHOPPING BAG</h2>
 			<div className="flex flex-col md:flex-row space-y-10 flex-1 relative">
 				<div className=" md:w-4/6">
 					<CartProducts
@@ -46,11 +46,19 @@ const Cart = () => {
 						</div>
 						<div className="flex w-full justify-between">
 							<p>Delivery fee</p>
-							<PriceSpan price={3.99} />
+
+							{cartState.total > 100 ? <p>FREE</p> : <PriceSpan price={3.99} />}
 						</div>
 						<div className="flex w-full justify-between text-lg">
 							<p>TOTAL</p>
-							<PriceSpan fontSize="text-xl" price={cartState.total + 3.99} />
+							<PriceSpan
+								fontSize="text-xl"
+								price={
+									cartState.total > 100
+										? cartState.total
+										: cartState.total + 3.99
+								}
+							/>
 						</div>
 						<Button
 							type="button"
