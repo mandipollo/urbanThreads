@@ -1,11 +1,13 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../store/store";
-import Button from "../components/cards/Button";
-import CartProducts from "../components/cart/CartProducts";
-import PriceSpan from "../components/cards/PriceSpan";
-import { removeProduct } from "../store/cartSlice";
-import PaymentMerchantsSection from "../components/cart/PaymentMerchantsSection";
+
+// state & router
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/store";
+
+// components
+import CartProducts from "../components/cart/CartProducts";
+import { removeProduct } from "../store/cartSlice";
+import ActionSummary from "../components/cards/ActionSummary";
 
 const Cart = () => {
 	const dispatch = useAppDispatch();
@@ -30,7 +32,7 @@ const Cart = () => {
 	return (
 		<section className="flex flex-col h-full w-full p-2 min-h-screen">
 			<h2 className="text-5xl font-semibold pt-10 pb-16">SHOPPING BAG</h2>
-			<div className="flex flex-col md:flex-row space-y-10 flex-1 relative">
+			<div className="flex flex-col md:flex-row gap-10 flex-1 relative">
 				<div className=" md:w-4/6">
 					<CartProducts
 						handleRemoveProduct={handleRemoveProduct}
@@ -38,41 +40,11 @@ const Cart = () => {
 					/>
 				</div>
 
-				<div className="h-full md:w-2/6">
-					<div className="sticky top-20 right-0 flex flex-col space-y-2">
-						<div className="flex w-full justify-between">
-							<p>Order value</p>
-							<PriceSpan price={cartState.total} />
-						</div>
-						<div className="flex w-full justify-between">
-							<p>Delivery fee</p>
-
-							{cartState.total > 100 ? <p>FREE</p> : <PriceSpan price={3.99} />}
-						</div>
-						<div className="flex w-full justify-between text-lg">
-							<p>TOTAL</p>
-							<PriceSpan
-								fontSize="text-xl"
-								price={
-									cartState.total > 100
-										? cartState.total
-										: cartState.total + 3.99
-								}
-							/>
-						</div>
-						<Button
-							type="button"
-							callback={handleCheckout}
-							text="CONTINUE TO CHECKOUT"
-						/>
-						<PaymentMerchantsSection />
-						<p className="text-sm">
-							Prices and delivery costs are not confirmed until you've reached
-							the checkout.<br></br> 28 days right of withdrawal. Read more
-							about return and refund policy.
-						</p>
-					</div>
-				</div>
+				<ActionSummary
+					action="CONTINUE TO CHECKOUT"
+					cartTotal={cartState.total}
+					callback={handleCheckout}
+				/>
 			</div>
 		</section>
 	);

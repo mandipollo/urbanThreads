@@ -1,13 +1,15 @@
 import React, { SetStateAction } from "react";
 
+// types
+import { CartProduct } from "../../types";
 // components
 import Button from "../cards/Button";
-import { CartProduct } from "../../types";
+
 // state
 
 import { useAppDispatch } from "../../store/store";
 import { removeProduct } from "../../store/cartSlice";
-import { useDispatch } from "react-redux";
+
 interface CheckOutInfoProps {
 	userState: {
 		name: string;
@@ -59,7 +61,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 				<p aria-label="user email">{userState.email}</p>
 			</div>
 
-			<h3 className="font-normal py-2">BILLING ADDRESS</h3>
+			<h3 className="font-normal py-2">DELIVERY ADDRESS</h3>
 
 			{!editAddress && userState.address.postcode ? (
 				<div className="border-b flex flex-col pb-10">

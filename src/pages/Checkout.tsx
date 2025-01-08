@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { backendUrl } from "../App";
 
 // components
 import CheckoutInfo from "../components/checkout/CheckoutInfo";
-import CheckoutPurchase from "../components/checkout/CheckoutPurchase";
+import ActionSummary from "../components/cards/ActionSummary";
 // state
 
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { updateAddress } from "../store/userSlice";
-import axios from "axios";
-import { backendUrl } from "../App";
+
 const Checkout = () => {
 	// cart state
 	const cartState = useAppSelector(state => state.cartReducer);
@@ -56,7 +57,7 @@ const Checkout = () => {
 	return (
 		<section className="flex flex-col h-full w-full p-2 min-h-screen">
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
-			<div className="flex flex-col md:flex-row space-y-10 flex-1 relative">
+			<div className="flex flex-col gap-10 md:flex-row flex-1 relative">
 				<CheckoutInfo
 					cartItems={cartState.items}
 					setEditAddress={setEditAddress}
@@ -70,7 +71,7 @@ const Checkout = () => {
 					setPostcode={setPostcode}
 					handleAddressUpdate={handleAddressUpdate}
 				/>
-				<CheckoutPurchase />
+				<ActionSummary action="COMPLETE PURCHASE" cartTotal={cartState.total} />
 			</div>
 		</section>
 	);
