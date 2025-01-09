@@ -2,20 +2,15 @@ import React from "react";
 
 // state & router
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppSelector } from "../store/store";
 
 // components
 import CartProducts from "../components/cart/CartProducts";
-import { removeProduct } from "../store/cartSlice";
 import ActionSummary from "../components/cards/ActionSummary";
 
-const Cart = () => {
-	const dispatch = useAppDispatch();
+const Cart: React.FC = () => {
 	const cartState = useAppSelector(state => state.cartReducer);
 
-	const handleRemoveProduct = (id: string) => {
-		dispatch(removeProduct(id));
-	};
 	// redirect user to login if user not signed in or navigaet to checkout page
 	const navigate = useNavigate();
 	const token = useAppSelector(state => state.tokenReducer.token);
@@ -34,10 +29,7 @@ const Cart = () => {
 			<h2 className="text-5xl font-semibold pt-10 pb-16">SHOPPING BAG</h2>
 			<div className="flex flex-col md:flex-row gap-10 flex-1 relative">
 				<div className=" md:w-4/6">
-					<CartProducts
-						handleRemoveProduct={handleRemoveProduct}
-						cartItems={cartState.items}
-					/>
+					<CartProducts cartItems={cartState.items} />
 				</div>
 
 				<ActionSummary

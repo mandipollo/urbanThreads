@@ -1,7 +1,7 @@
 import React, { SetStateAction } from "react";
 import CartSvg from "../icons/CartSvg";
 import { Link, NavLink } from "react-router-dom";
-import Cart from "../cart/Cart";
+import CartSummary from "../cart/CartSummary";
 
 interface NavbarProps {
 	token: string | null;
@@ -104,10 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							<CartSvg color="black" />
 						</button>
 					</Link>
-
-					{cartSidebar && (
-						<Cart cartSidebar={cartSidebar} setCartSidebar={setCartSidebar} />
-					)}
+					{cartSidebar && <CartSummary />}
 				</div>
 			</nav>
 		</header>
