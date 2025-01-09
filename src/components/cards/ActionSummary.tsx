@@ -1,9 +1,9 @@
 import React from "react";
 
 // components
-import PriceSpan from "./PriceSpan";
+import PriceSpan from "../shared/PriceSpan";
 import PaymentMerchantsSection from "../cart/PaymentMerchantsSection";
-import Button from "./Button";
+import Button from "../shared/Button";
 
 interface ActionSummaryProps {
 	cartTotal: number;

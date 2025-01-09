@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { backendUrl } from "../../App";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Button from "../cards/Button";
+import Button from "../shared/Button";
 
 // state management
 

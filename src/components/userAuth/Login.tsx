@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // components
-import Button from "../cards/Button";
+import Button from "../shared/Button";
 // state management
 import { setToken } from "../../store/tokenSlice";
 import { useAppDispatch } from "../../store/store";

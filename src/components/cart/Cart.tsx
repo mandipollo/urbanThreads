@@ -1,5 +1,5 @@
 import React, { SetStateAction } from "react";
-import Button from "../cards/Button";
+import Button from "../shared/Button";
 
 const Cart: React.FC<{
 	cartSidebar: boolean;

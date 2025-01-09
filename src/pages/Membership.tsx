@@ -1,4 +1,4 @@
-import Button from "../components/cards/Button";
+import Button from "../components/shared/Button";
 
 const Membership = () => {
 	return (

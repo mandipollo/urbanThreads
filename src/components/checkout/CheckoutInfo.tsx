@@ -3,7 +3,7 @@ import React, { SetStateAction } from "react";
 // types
 import { CartProduct } from "../../types";
 // components
-import Button from "../cards/Button";
+import Button from "../shared/Button";
 
 // state
 

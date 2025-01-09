@@ -1,6 +1,6 @@
 import React from "react";
 import { CartProduct } from "../../types";
-import PriceSpan from "../cards/PriceSpan";
+import PriceSpan from "../shared/PriceSpan";
 
 const CartProducts: React.FC<{
 	cartItems: CartProduct[];

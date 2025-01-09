@@ -19,10 +19,6 @@ const Root = () => {
 	const [category, setCategory] = useState<string>("Women");
 	const [hamburgerMenu, setHamburgerMenu] = useState<boolean>(false);
 
-	// footer state for mobile screen
-	const [company, setCompany] = useState<boolean>(false);
-	const [contact, setContact] = useState<boolean>(false);
-
 	// Disable scrolling when hamburger menu is active
 	useEffect(() => {
 		if (hamburgerMenu) {
@@ -56,12 +52,7 @@ const Root = () => {
 			<section className="flex flex-col flex-grow ">
 				<Outlet />
 			</section>
-			<Footer
-				company={company}
-				setCompany={setCompany}
-				contact={contact}
-				setContact={setContact}
-			/>
+			<Footer />
 		</main>
 	);
 };
