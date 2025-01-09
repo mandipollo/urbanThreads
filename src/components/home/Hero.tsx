@@ -9,7 +9,7 @@ const Hero = () => {
 			<h1 id="hero-heading" className="sr-only">
 				Explore our seasonal fashion collection
 			</h1>
-			<figure className=" flex w-full h-full ">
+			<figure className="relative w-full aspect-video ">
 				<img
 					loading="lazy"
 					alt="hero image showcasing general products for men and women"

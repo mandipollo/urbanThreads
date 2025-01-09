@@ -17,7 +17,7 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 			<h3 id="featured-heading" className="sr-only">
 				list of our featured products
 			</h3>
-			<div className="max-w-prose mx-auto text-center mb-8 md:mb-12 ">
+			<div className="max-w-prose mx-auto text-center mb-8 md:mb-12  ">
 				<h3 className="text-xl mb-4 underline decoration-[#F06292] underline-offset-2">
 					Featured products!
 				</h3>
@@ -30,7 +30,7 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 			</div>
 			<div className="flex flex-col md:flex-row gap-2 relative">
 				<div className="w-full md:w-1/2 md:sticky top-0 left-0 h-screen">
-					<figure className="h-full w-full ">
+					<figure className="h-full w-full aspect-square">
 						<img
 							src="/image/bestseller.webp"
 							className=" object-cover h-full w-full"
@@ -41,15 +41,25 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 				<div className="w-full md:w-1/2">
 					<ul
 						aria-label="List of our featured products"
-						className="grid grid-cols-2 px-2 gap-2 md:gap-4 auto-rows-fr md:overflow-y-auto"
+						className="grid grid-cols-2 gap-2 auto-rows-fr md:overflow-y-auto"
 					>
-						{bestseller.map(product => (
-							<ProductCard
-								key={product._id}
-								product={product}
-								heightClasses="aspect-[3/4]"
-							/>
-						))}
+						{bestseller.length
+							? bestseller.map(product => (
+									<ProductCard key={product._id} product={product} />
+							  ))
+							: Array.from({ length: 12 }).map((_, index) => (
+									<li
+										key={index}
+										className="flex flex-col snap-always snap-start"
+										role="presentation"
+									>
+										<div className="aspect-[3/4] w-full bg-gray-300 animate-pulse rounded"></div>
+										<div className="mt-2 flex flex-col gap-1 px-2">
+											<div className="w-3/4 h-4 bg-gray-300 animate-pulse rounded"></div>
+											<div className="w-1/2 h-4 bg-gray-300 animate-pulse rounded"></div>
+										</div>
+									</li>
+							  ))}
 					</ul>
 				</div>
 			</div>

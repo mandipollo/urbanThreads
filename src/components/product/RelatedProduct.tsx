@@ -23,11 +23,7 @@ const RelatedProduct: React.FC<{
 			<h1 className="pl-2">RELATED ITEMS</h1>
 			<ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden  ">
 				{filteredRelatedProducts.map(product => (
-					<ProductCard
-						key={product._id}
-						product={product}
-						heightClasses="aspect-[3/4]"
-					/>
+					<ProductCard key={product._id} product={product} />
 				))}
 			</ul>
 		</section>

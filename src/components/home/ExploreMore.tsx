@@ -36,14 +36,11 @@ const ExploreMore = () => {
 						className="flex relative flex-col w-screen md:w-full flex-none snap-start"
 						key={product.id}
 					>
-						<figure
-							aria-label={product.title}
-							className="h-full w-full inline-block  "
-						>
+						<figure aria-label={product.title} className=" aspect-[3/4] ">
 							<img
 								src={product.image}
 								alt={product.title}
-								className="h-[500px] object-cover w-full "
+								className=" object-cover w-full "
 							/>
 						</figure>
 

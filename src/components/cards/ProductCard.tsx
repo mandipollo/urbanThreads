@@ -1,17 +1,15 @@
 import React from "react";
 import { Product } from "../../types";
-import CartSvg from "../icons/CartSvg";
 
 interface ProductCard {
 	product: Product;
-	heightClasses: string;
 }
-const ProductCard: React.FC<ProductCard> = ({ product, heightClasses }) => {
+const ProductCard: React.FC<ProductCard> = ({ product }) => {
 	return (
 		<li role="article" className="flex flex-col group snap-always snap-start ">
 			<figure
 				key={product._id}
-				className={`overflow-hidden w-full group relative ${heightClasses} `}
+				className={`overflow-hidden w-full group relative aspect-[3/4] `}
 			>
 				<img
 					loading="lazy"
@@ -38,14 +36,6 @@ const ProductCard: React.FC<ProductCard> = ({ product, heightClasses }) => {
 						£{product.price}
 					</p>
 				</div>
-				<button
-					aria-label={`Add ${product.name} to cart`}
-					className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-600 rounded-full p-2"
-				>
-					<figure className="h-4 w-4">
-						<CartSvg color="white" />
-					</figure>
-				</button>
 			</div>
 		</li>
 	);
