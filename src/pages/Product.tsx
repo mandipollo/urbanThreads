@@ -10,7 +10,7 @@ import useProduct from "../components/hooks/useProduct";
 
 import { addProduct } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
-import { CartProduct, Product as ProductType } from "../types";
+import { CartProduct } from "../types";
 import { useAppSelector } from "../store/store";
 import { toast } from "react-toastify";
 
@@ -20,7 +20,7 @@ const Product: React.FC = () => {
 	const [size, setSize] = useState<string>("");
 	const fetchedProduct = useProduct(productId || null);
 
-	// check if the product exists in the slice ? notify user :  store product to cart
+	// if product - cartSlice ? notify user :  store product to cart
 
 	const dispatch = useDispatch();
 	const cartItemState = useAppSelector(state => state.cartReducer.items);
@@ -28,8 +28,10 @@ const Product: React.FC = () => {
 		const productExists = cartItemState.some(item => item._id === product._id);
 		if (!productExists) {
 			dispatch(addProduct(product));
+			toast("Product added to cart!");
+		} else {
+			toast("Product already added to cart");
 		}
-		toast("Product already added to cart");
 	};
 
 	if (!fetchedProduct) {
@@ -136,7 +138,10 @@ const Product: React.FC = () => {
 					</div>
 				</section>
 			</div>
-			<RelatedProduct subCategory={fetchedProduct.subCategory} />
+			<RelatedProduct
+				productId={productId}
+				subCategory={fetchedProduct.subCategory}
+			/>
 		</section>
 	);
 };

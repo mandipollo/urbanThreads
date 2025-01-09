@@ -132,7 +132,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 			<div className="flex flex-col gap-2">
 				<h3 className="font-normal py-2">PARCEL</h3>
 				<p>Shipped by urbanThreads</p>
-				<ul className="flex flex-col md:flex-row gap-2">
+				<ul className=" grid grid-cols-[repeat(auto-fit,minmax(8rem,max-content))] ">
 					{cartItems.map(item => (
 						<li key={item._id} className="relative">
 							<figure className="h-40 aspect-[3/4]">
@@ -144,7 +144,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 							</figure>
 							<button
 								onClick={() => handleRemoveProduct(item._id)}
-								className="absolute bg-white p-4 bottom-0 right-0 "
+								className="absolute bg-white p-4 bottom-0 left-0 "
 							>
 								<figure className=" h-4 w-4 ">
 									<img
