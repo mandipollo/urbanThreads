@@ -3,7 +3,7 @@ import HoverRevealButton from "../shared/HoverRevealButton";
 const Footer = ({}) => {
 	return (
 		<footer className="flex w-full text-gray-400">
-			<div className="grid grid-cols-2 m-2 p-10 rounded-md bg-black w-full">
+			<div className="grid md:grid-cols-2 md:m-2 p-10 rounded-md bg-black w-full">
 				<section className="flex flex-col gap-4">
 					<h3>UrbanThreads</h3>
 					<p className="text-gray-500 text-xl">This is a demo site.</p>

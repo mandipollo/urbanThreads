@@ -11,6 +11,8 @@ import useProduct from "../components/hooks/useProduct";
 import { addProduct } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { CartProduct, Product as ProductType } from "../types";
+import { useAppSelector } from "../store/store";
+import { toast } from "react-toastify";
 
 const Product: React.FC = () => {
 	const sizes = ["S", "M", "L", "XL", "XXL"];
@@ -18,12 +20,16 @@ const Product: React.FC = () => {
 	const [size, setSize] = useState<string>("");
 	const fetchedProduct = useProduct(productId || null);
 
-	// store product info in redux cart slice
+	// check if the product exists in the slice ? notify user :  store product to cart
 
 	const dispatch = useDispatch();
-
+	const cartItemState = useAppSelector(state => state.cartReducer.items);
 	const handleAddProductToCart = (product: CartProduct) => {
-		dispatch(addProduct(product));
+		const productExists = cartItemState.some(item => item._id === product._id);
+		if (!productExists) {
+			dispatch(addProduct(product));
+		}
+		toast("Product already added to cart");
 	};
 
 	if (!fetchedProduct) {
