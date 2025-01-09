@@ -53,7 +53,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	return (
 		<div
 			aria-label="personal user information section"
-			className="flex flex-col w-3/5"
+			className="flex flex-col"
 		>
 			<div className="border-b flex flex-col pb-10">
 				<h3 className="font-normal">MY INFORMATION</h3>

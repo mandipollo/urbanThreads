@@ -9,6 +9,7 @@ import ActionSummary from "../components/cards/ActionSummary";
 
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { updateAddress } from "../store/userSlice";
+import CheckoutCardForm from "../components/checkout/CheckoutCardForm";
 
 const Checkout = () => {
 	// cart state
@@ -58,19 +59,23 @@ const Checkout = () => {
 		<section className="flex flex-col h-full w-full p-2 min-h-screen">
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
 			<div className="flex flex-col gap-10 md:flex-row flex-1 relative">
-				<CheckoutInfo
-					cartItems={cartState.items}
-					setEditAddress={setEditAddress}
-					editAddress={editAddress}
-					userState={userState}
-					street={street}
-					setStreet={setStreet}
-					town={town}
-					setTown={setTown}
-					postcode={postcode}
-					setPostcode={setPostcode}
-					handleAddressUpdate={handleAddressUpdate}
-				/>
+				<div className="flex flex-col w-3/5 gap-10">
+					<CheckoutInfo
+						cartItems={cartState.items}
+						setEditAddress={setEditAddress}
+						editAddress={editAddress}
+						userState={userState}
+						street={street}
+						setStreet={setStreet}
+						town={town}
+						setTown={setTown}
+						postcode={postcode}
+						setPostcode={setPostcode}
+						handleAddressUpdate={handleAddressUpdate}
+					/>
+					<CheckoutCardForm />
+				</div>
+
 				<ActionSummary action="COMPLETE PURCHASE" cartTotal={cartState.total} />
 			</div>
 		</section>
