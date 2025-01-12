@@ -14,11 +14,7 @@ const ProductAll: React.FC<ProductAllMenProps> = ({ filteredProducts }) => {
 					to={`/product/men/${product._id}`}
 					state={`productId : ${product._id}`}
 				>
-					<ProductCard
-						heightClasses="aspect-[3/4]"
-						key={product._id}
-						product={product}
-					/>
+					<ProductCard key={product._id} product={product} />
 				</Link>
 			))}
 		</ul>

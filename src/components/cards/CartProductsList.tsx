@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CartProduct } from "../../types";
+import { CartProduct, Product } from "../../types";
 // components
 import PriceSpan from "../shared/PriceSpan";
 
@@ -23,7 +23,7 @@ const CartProductsList: React.FC<{
 				<li key={item._id} className="flex gap-2 flex-row">
 					<figure className="h-full w-40">
 						<img
-							src={item.image}
+							src={item.image[0]}
 							alt={item.name}
 							className="h-full w-full aspect-[3/4]"
 						/>

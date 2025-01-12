@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 
 const CartSummary: React.FC<{}> = ({}) => {
 	const cartState = useAppSelector(state => state.cartReducer);
+	console.log(cartState);
+
 	return (
 		<div
 			role="dialog"

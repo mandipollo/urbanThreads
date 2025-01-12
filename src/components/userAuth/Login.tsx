@@ -10,6 +10,7 @@ import { setToken } from "../../store/tokenSlice";
 import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../store/userSlice";
+import { initializeCart } from "../../store/cartSlice";
 
 const Login: React.FC<{
 	signupInView: () => void;
@@ -28,11 +29,18 @@ const Login: React.FC<{
 			});
 
 			if (response.data.success) {
-				const { token, name, email, id, address } = response.data;
-				console.log(name, token, id, address, email);
+				const { token, name, email, address, cart } = response.data;
 
+				// modify the cart data
+
+				const modifiedCart = cart.map((item: any) => {
+					item.productId.size = item.size;
+					return item.productId;
+				});
+				console.log(modifiedCart);
+				dispatch(initializeCart(modifiedCart));
 				dispatch(setToken(token));
-				dispatch(setUser({ name, email, _id: id, address }));
+				dispatch(setUser({ name, email, address }));
 				navigate("/account");
 			} else {
 				toast.error(response.data.message);

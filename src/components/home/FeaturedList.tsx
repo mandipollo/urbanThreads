@@ -12,24 +12,16 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 	return (
 		<section
 			aria-labelledby="featured-heading"
-			className="flex flex-col w-full py-10 md:gap-10 "
+			className="flex flex-col w-full gap-2 "
 		>
 			<h3 id="featured-heading" className="sr-only">
 				list of our featured products
 			</h3>
-			<div className="max-w-prose mx-auto text-center mb-8 md:mb-12  ">
-				<h3 className="text-xl mb-4 underline decoration-[#F06292] underline-offset-2">
-					Featured products!
-				</h3>
-				<p className="font-light text-sm md:text-base">
-					Step into our curated collection of standout products, chosen for
-					their exceptional style, quality, and appeal. From trending must-haves
-					to timeless essentials, these pieces are designed to elevate any
-					occasion.
-				</p>
+			<div className="flex flex-col border m-2 bg-gradient-to-r to-[#CAAF82] via-[#BDBECE] from-[#BDC5CB]">
+				<h3 className="text-xl p-2">Featured</h3>
 			</div>
 			<div className="flex flex-col md:flex-row gap-2 relative">
-				<div className="w-full md:w-1/2 md:sticky top-0 left-0 h-screen">
+				<div className="w-full md:w-1/2 md:sticky top-14 left-0 h-screen">
 					<figure className="h-full w-full aspect-square">
 						<img
 							src="/image/bestseller.webp"

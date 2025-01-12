@@ -1,3 +1,5 @@
+import ActionButton from "../shared/ActionButton";
+
 const DUMMY_DATA = [
 	{
 		id: 1,
@@ -46,9 +48,7 @@ const ExploreMore = () => {
 
 						<div className="flex flex-col justify-center items-center space-y-4 absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
 							<p className="text-white text-md ld:text-xl">{product.title}</p>
-							<button className="px-4 py-2 text-sm lg:text-md  flex  bg-white rounded-xl">
-								{product.category}
-							</button>
+							<ActionButton action={product.category} />
 						</div>
 					</li>
 				))}

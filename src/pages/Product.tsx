@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+
+// routes
 import { useParams } from "react-router-dom";
 
+// misc
+import { toast } from "react-toastify";
+// hooks
+import useProduct from "../components/hooks/useProduct";
+// components
 import ProductSizes from "../components/product/ProductSizes";
 import ProductImages from "../components/product/ProductImages";
 import RelatedProduct from "../components/product/RelatedProduct";
-import useProduct from "../components/hooks/useProduct";
 
-//
+// state
 
 import { addProduct } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { CartProduct } from "../types";
 import { useAppSelector } from "../store/store";
-import { toast } from "react-toastify";
+import axios from "axios";
+import { backendUrl } from "../App";
 
 const Product: React.FC = () => {
 	const sizes = ["S", "M", "L", "XL", "XXL"];
@@ -20,19 +27,46 @@ const Product: React.FC = () => {
 	const [size, setSize] = useState<string>("");
 	const fetchedProduct = useProduct(productId || null);
 
-	// if product - cartSlice ? notify user :  store product to cart
+	// check if product already exists in cartSlice ? notify user :  store product to cart
 
 	const dispatch = useDispatch();
 	const cartItemState = useAppSelector(state => state.cartReducer.items);
-	const handleAddProductToCart = (product: CartProduct) => {
-		const productExists = cartItemState.some(item => item._id === product._id);
-		if (!productExists) {
-			dispatch(addProduct(product));
-			toast("Product added to cart!");
-		} else {
-			toast("Product already added to cart");
+
+	const token = useAppSelector(state => state.tokenReducer.token);
+
+	//add product id to user model
+	const handleAddProductToCart = async (productId: string, size: string) => {
+		try {
+			const response = await axios.post(
+				backendUrl + "/api/user/addToCart",
+				{
+					productId,
+					size,
+				},
+				{
+					headers: {
+						token,
+					},
+				}
+			);
+
+			console.log(response);
+		} catch (error) {
+			let message;
+			if (error instanceof Error) message = error.message;
+			else message = String(error);
+			console.error({ message });
 		}
 	};
+	// const handleAddProductToCart = (product: CartProduct) => {
+	// 	const productExists = cartItemState.some(item => item._id === product._id);
+	// 	if (!productExists) {
+	// 		dispatch(addProduct(product));
+	// 		toast("Product added to cart!");
+	// 	} else {
+	// 		toast("Product already added to cart");
+	// 	}
+	// };
 
 	if (!fetchedProduct) {
 		return (
@@ -80,27 +114,17 @@ const Product: React.FC = () => {
 										/>
 									))}
 								</div>
-
-								<button
-									onClick={() =>
-										handleAddProductToCart({
-											_id: fetchedProduct._id,
-											name: fetchedProduct.name,
-											description: fetchedProduct.description,
-											price: fetchedProduct.price,
-											category: fetchedProduct.category,
-											subCategory: fetchedProduct.subCategory,
-											size: size,
-											image: fetchedProduct.image[0],
-										})
-									}
-									disabled={size.length === 0}
-									aria-label="Add to cart"
-									type="button"
-									className="hover:bg-[#343434] bg-black text-white w-full py-4 disabled:cursor-not-allowed "
-								>
-									ADD
-								</button>
+								{productId && (
+									<button
+										disabled={size.length === 0}
+										onClick={() => handleAddProductToCart(productId, size)}
+										aria-label="Add to cart"
+										type="button"
+										className="hover:bg-[#343434] bg-black text-white w-full py-4 disabled:cursor-not-allowed "
+									>
+										ADD
+									</button>
+								)}
 							</div>
 							<div className="w-full gap-10 flex flex-col">
 								<div

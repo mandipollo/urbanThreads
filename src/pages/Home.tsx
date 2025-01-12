@@ -8,8 +8,12 @@ import axios from "axios";
 import { backendUrl } from "../App";
 import { Product } from "../types";
 import NewIn from "../components/home/NewIn";
+import { useAppSelector } from "../store/store";
 
 const Home = () => {
+	const cartState = useAppSelector(state => state.cartReducer);
+	console.log(cartState);
+
 	const [products, setProducts] = useState<Product[]>([]);
 
 	const [bestSeller, setBestseller] = useState<Product[]>([]);

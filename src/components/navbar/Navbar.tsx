@@ -2,6 +2,7 @@ import React, { SetStateAction } from "react";
 import CartSvg from "../icons/CartSvg";
 import { Link, NavLink } from "react-router-dom";
 import CartSummary from "../cart/CartSummary";
+import { useAppSelector } from "../../store/store";
 
 interface NavbarProps {
 	token: string | null;
@@ -17,6 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({
 	cartSidebar,
 	token,
 }) => {
+	const cartItemsState = useAppSelector(state => state.cartReducer.items);
 	return (
 		<header className="grid md:px-8 grid-cols-2 md:grid-cols-[1fr_1fr_1fr] flex-row justify-between items-center h-14 sticky top-0 z-40 bg-white">
 			<nav className="flex h-full md:hidden">
@@ -99,10 +101,15 @@ const Navbar: React.FC<NavbarProps> = ({
 				)}
 
 				<div onMouseEnter={() => setCartSidebar(true)}>
-					<Link to="/cart">
+					<Link to="/cart" className="relative">
 						<button aria-label="navigate to cart" className="h-4 w-4 ">
 							<CartSvg color="black" />
 						</button>
+						{cartItemsState.length > 0 && (
+							<span className="absolute -bottom-4 right-1 text-sm">
+								{cartItemsState.length}
+							</span>
+						)}
 					</Link>
 					{cartSidebar && <CartSummary />}
 				</div>

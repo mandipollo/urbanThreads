@@ -16,8 +16,11 @@ export interface CartProduct {
 	name: string;
 	description: string;
 	price: number;
-	size: string;
+	sizes: string[];
 	category: string;
 	subCategory: string;
-	image: string;
+	date: Date;
+	bestseller: boolean;
+	image: string[];
+	size: string;
 }
