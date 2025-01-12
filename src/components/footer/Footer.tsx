@@ -1,4 +1,4 @@
-import HoverRevealButton from "../shared/HoverRevealButton";
+import HoverRevealButton from "../ui/HoverRevealButton";
 
 const Footer = ({}) => {
 	return (

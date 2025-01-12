@@ -8,17 +8,17 @@ import { persistStore } from "redux-persist";
 
 // pages
 import Root from "./pages/Root";
-import Home from "./pages/Home";
-import MenCollection from "./pages/MenCollection";
-import WomenCollection from "./pages/WomenCollection";
-import Product from "./pages/Product";
-import UserAuth from "./pages/UserAuth";
-import Account from "./pages/Account";
-import AccountSettings from "./pages/AccountSettings";
-import Membership from "./pages/Membership";
-import Orders from "./pages/Orders";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import Home from "./pages/home/Home";
+import MenCollection from "./pages/menCollection/MenCollection";
+import WomenCollection from "./pages/womenCollection/WomenCollection";
+import Product from "./pages/product/Product";
+import UserAuth from "./pages/auth/UserAuth";
+import Account from "./pages/account/Account";
+import AccountSettings from "./pages/accountSettings/AccountSettings";
+import Membership from "./pages/membership/Membership";
+import Orders from "./pages/orders/Orders";
+import Cart from "./pages/cart/Cart";
+import Checkout from "./pages/checkout/Checkout";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 let persistor = persistStore(store);

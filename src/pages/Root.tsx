@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../store/store";
 import { ToastContainer } from "react-toastify";
 //component
-import NavbarMobile from "../components/navbar/NavbarMobile";
-import Navbar from "../components/navbar/Navbar";
+import NavbarMobile from "../components/layout/NavbarMobile";
+import Navbar from "../components/layout/Navbar";
 import Footer from "../components/footer/Footer";
 const Root = () => {
 	// customer online status using token

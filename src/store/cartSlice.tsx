@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartProduct } from "../types";
+import { CartProduct } from "../types/types";
 
 interface CartState {
 	items: CartProduct[];
@@ -16,6 +16,7 @@ const cartSlice = createSlice({
 	reducers: {
 		initializeCart: (state, action: PayloadAction<CartProduct[]>) => {
 			state.items = action.payload;
+			state.total = action.payload.reduce((sum, item) => sum + item.price, 0);
 		},
 		addProduct: (state, action: PayloadAction<CartProduct>) => {
 			state.items.push(action.payload);

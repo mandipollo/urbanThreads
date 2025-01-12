@@ -1,20 +1,23 @@
 import React from "react";
 
-import { CartProduct, Product } from "../../types";
+import { CartProduct } from "../../types/types";
 // components
-import PriceSpan from "../shared/PriceSpan";
+import PriceSpan from "../ui/PriceSpan";
 
 // reddux state
 import { useAppDispatch } from "../../store/store";
 import { removeProduct } from "../../store/cartSlice";
+import useRemoveFromCart from "../../hooks/useRemoveFromCart";
 const CartProductsList: React.FC<{
 	cartItems: CartProduct[];
 	callback?: (e: string) => void;
 }> = ({ cartItems }) => {
-	// handle remove product from the cart slice
+	// remove product from cartSlice and db
+	const { removeFromCart } = useRemoveFromCart();
 
 	const dispatch = useAppDispatch();
-	const handleRemoveProduct = (id: string) => {
+	const handleRemoveProduct = async (id: string) => {
+		removeFromCart(id);
 		dispatch(removeProduct(id));
 	};
 	return (
