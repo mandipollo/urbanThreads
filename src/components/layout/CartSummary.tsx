@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 // cart state
 
 import { useAppSelector } from "../../store/store";
-import CartProductsList from "../cards/CartProductsList";
+import CartProductsList from "../../pages/cart/components/CartProductsList";
 import PriceSpan from "../ui/PriceSpan";
 import { Link } from "react-router-dom";
 

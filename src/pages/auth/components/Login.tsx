@@ -49,6 +49,7 @@ const Login: React.FC<{
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
 			console.error({ message });
+			toast.error(message);
 		}
 	};
 	return (
@@ -56,7 +57,7 @@ const Login: React.FC<{
 			<div ref={signinRef}>
 				<form
 					onSubmit={submitHandler}
-					className="flex w-80 flex-col gap-4 shadow-md p-10 border"
+					className="flex w-96 flex-col gap-4 shadow-md p-10 border"
 				>
 					<div className="flex flex-col gap-2">
 						<label htmlFor="email">Email </label>

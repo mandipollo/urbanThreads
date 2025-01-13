@@ -12,9 +12,7 @@ const Root = () => {
 	// customer online status using token
 
 	const token = useAppSelector(state => state.tokenReducer.token);
-	// cart sidebar
 
-	const [cartSidebar, setCartSidebar] = useState<boolean>(false);
 	// Navbar state for mobile screen
 	const [category, setCategory] = useState<string>("Women");
 	const [hamburgerMenu, setHamburgerMenu] = useState<boolean>(false);
@@ -38,8 +36,6 @@ const Root = () => {
 
 			<Navbar
 				token={token}
-				cartSidebar={cartSidebar}
-				setCartSidebar={setCartSidebar}
 				setHamburgerMenu={setHamburgerMenu}
 				hamburgerMenu={hamburgerMenu}
 			/>

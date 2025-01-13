@@ -1,7 +1,7 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 
 // routes & state
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { useAppSelector } from "../../store/store";
 
 // components
@@ -11,16 +11,28 @@ interface NavbarProps {
 	token: string | null;
 	hamburgerMenu: boolean;
 	setHamburgerMenu: React.Dispatch<SetStateAction<boolean>>;
-	cartSidebar: boolean;
-	setCartSidebar: React.Dispatch<SetStateAction<boolean>>;
 }
 const Navbar: React.FC<NavbarProps> = ({
 	hamburgerMenu,
 	setHamburgerMenu,
-	setCartSidebar,
-	cartSidebar,
 	token,
 }) => {
+	// cart summary
+
+	const [showCartSummary, setShowCartSummary] = useState<boolean>(false);
+
+	// disable cart summary in cart and checkout page
+
+	const { pathname } = useLocation();
+
+	const handleShowCartSummary = (pathname: String) => {
+		if (pathname === "/cart" || pathname === "/checkout") {
+			return;
+		} else {
+			setShowCartSummary(true);
+		}
+	};
+
 	const cartItemsState = useAppSelector(state => state.cartReducer.items);
 	return (
 		<header className="grid md:px-8 grid-cols-2 md:grid-cols-[1fr_1fr_1fr] flex-row justify-between items-center h-14 sticky top-0 z-40 bg-white">
@@ -86,7 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({
 			<nav className="px-2 flex justify-center items-center"></nav>
 
 			<nav
-				onMouseLeave={() => setCartSidebar(false)}
+				onMouseLeave={() => setShowCartSummary(false)}
 				className="px-4 space-x-8 h-full items-center hidden md:flex  justify-end"
 			>
 				{token ? (
@@ -103,7 +115,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					</Link>
 				)}
 
-				<div onMouseEnter={() => setCartSidebar(true)}>
+				<div onMouseEnter={() => handleShowCartSummary(pathname)}>
 					<Link to="/cart" className="relative">
 						<button aria-label="navigate to cart" className="h-4 w-4 ">
 							<CartSvg color="black" />
@@ -114,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({
 							</span>
 						)}
 					</Link>
-					{cartSidebar && <CartSummary />}
+					{showCartSummary && <CartSummary />}
 				</div>
 			</nav>
 		</header>

@@ -1,13 +1,13 @@
 import React from "react";
 
-import { CartProduct } from "../../types/types";
+import { CartProduct } from "../../../types/types";
 // components
-import PriceSpan from "../ui/PriceSpan";
+import PriceSpan from "../../../components/ui/PriceSpan";
 
 // reddux state
-import { useAppDispatch } from "../../store/store";
-import { removeProduct } from "../../store/cartSlice";
-import useRemoveFromCart from "../../hooks/useRemoveFromCart";
+import { useAppDispatch } from "../../../store/store";
+import { removeProduct } from "../../../store/cartSlice";
+import useRemoveFromCart from "../../../hooks/useRemoveFromCart";
 const CartProductsList: React.FC<{
 	cartItems: CartProduct[];
 	callback?: (e: string) => void;
@@ -21,7 +21,7 @@ const CartProductsList: React.FC<{
 		dispatch(removeProduct(id));
 	};
 	return (
-		<ul className="flex flex-col gap-10">
+		<ul className="flex flex-col gap-2">
 			{cartItems.map(item => (
 				<li key={item._id} className="flex gap-2 flex-row">
 					<figure className="h-full w-40">

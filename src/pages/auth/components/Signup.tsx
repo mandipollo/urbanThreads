@@ -40,7 +40,7 @@ const Signup: React.FC<{
 			<div ref={signupRef}>
 				<form
 					onSubmit={submitHandler}
-					className="flex w-80 flex-col gap-4 shadow-md p-10 border"
+					className="flex w-96 flex-col gap-4 shadow-md p-10 border"
 				>
 					<div className="flex flex-col gap-2">
 						<label htmlFor="name">Name </label>
