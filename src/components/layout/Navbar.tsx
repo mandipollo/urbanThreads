@@ -1,12 +1,14 @@
 import React, { SetStateAction, useState } from "react";
 
 // routes & state
-import { Link, NavLink, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../store/store";
 
 // components
 import CartSummary from "./CartSummary";
 import CartSvg from "../icons/CartSvg";
+
+// interfaces
 interface NavbarProps {
 	token: string | null;
 	hamburgerMenu: boolean;
@@ -17,6 +19,11 @@ const Navbar: React.FC<NavbarProps> = ({
 	setHamburgerMenu,
 	token,
 }) => {
+	// handle hamburger menu
+
+	const handleHamburgerMenu = () => {
+		setHamburgerMenu(!hamburgerMenu);
+	};
 	// cart summary
 
 	const [showCartSummary, setShowCartSummary] = useState<boolean>(false);
@@ -41,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({
 					role="button"
 					aria-label="hamburger menu"
 					className="pl-4"
-					onClick={() => setHamburgerMenu(!hamburgerMenu)}
+					onClick={handleHamburgerMenu}
 				>
 					<figure className="h-4 w-4 relative">
 						{hamburgerMenu ? (

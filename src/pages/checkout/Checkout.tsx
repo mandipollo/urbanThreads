@@ -5,7 +5,7 @@ import { backendUrl } from "../../App";
 // components
 import CheckoutInfo from "./components/CheckoutInfo";
 import ActionSummary from "../../components/shared/ActionSummary";
-import CheckoutCardForm from "./components/CheckoutCardForm";
+import PaymentMethod from "./components/PaymentMethod";
 // state
 
 import { useAppDispatch, useAppSelector } from "../../store/store";
@@ -55,8 +55,12 @@ const Checkout = () => {
 			}
 		} catch (error) {}
 	};
+
+	// payment method
+
+	const [paymentMethod, setPaymentMethod] = useState<"COD" | "CARD">("COD");
 	return (
-		<section className="flex flex-col h-full w-full p-2 min-h-screen">
+		<section className="flex flex-col h-full w-full p-4 min-h-screen">
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
 			<div className="flex flex-col gap-10 md:flex-row flex-1 relative">
 				<div className="flex flex-col w-3/5 gap-10">
@@ -73,7 +77,10 @@ const Checkout = () => {
 						setPostcode={setPostcode}
 						handleAddressUpdate={handleAddressUpdate}
 					/>
-					<CheckoutCardForm />
+					<PaymentMethod
+						paymentMethod={paymentMethod}
+						setPaymentMethod={setPaymentMethod}
+					/>
 				</div>
 
 				<ActionSummary action="COMPLETE PURCHASE" cartTotal={cartState.total} />

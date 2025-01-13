@@ -53,15 +53,15 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	return (
 		<div
 			aria-label="personal user information section"
-			className="flex flex-col"
+			className="flex flex-col text-sm"
 		>
 			<div className="border-b flex flex-col pb-10">
-				<h3 className="font-normal">MY INFORMATION</h3>
+				<h3 className="font-normal text-base">MY INFORMATION</h3>
 				<p aria-label="user name">{userState.name}</p>
 				<p aria-label="user email">{userState.email}</p>
 			</div>
 
-			<h3 className="font-normal py-2">DELIVERY ADDRESS</h3>
+			<h3 className="font-normal py-2 text-base">DELIVERY ADDRESS</h3>
 
 			{!editAddress && userState.address.postcode ? (
 				<div className="border-b flex flex-col pb-10">
@@ -130,7 +130,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 			)}
 
 			<div className="flex flex-col gap-2">
-				<h3 className="font-normal py-2">PARCEL</h3>
+				<h3 className="font-normal py-2 text-base">PARCEL</h3>
 				<p>Shipped by urbanThreads</p>
 				<ul className=" grid grid-cols-[repeat(auto-fit,minmax(8rem,max-content))] ">
 					{cartItems.map(item => (
@@ -157,6 +157,8 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 						</li>
 					))}
 				</ul>
+				<h4 className="font-normal text-base">Standard delivery</h4>
+				<p>FREE - 3-5 working days</p>
 			</div>
 		</div>
 	);
