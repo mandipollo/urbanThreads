@@ -10,10 +10,14 @@ import PaymentMethod from "./components/PaymentMethod";
 
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { updateAddress } from "../../store/userSlice";
+import { resetAll } from "../../store/cartSlice";
+import { toast } from "react-toastify";
+import usePlaceOrder from "../../hooks/usePlaceOrder";
 
 const Checkout = () => {
 	// cart state
 	const cartState = useAppSelector(state => state.cartReducer);
+
 	// user state
 	const userState = useAppSelector(state => state.userReducer);
 	const token = useAppSelector(state => state.tokenReducer.token);
@@ -53,12 +57,42 @@ const Checkout = () => {
 			} else {
 				dispatch(updateAddress({ street, town, postcode }));
 			}
-		} catch (error) {}
+		} catch (error) {
+			let message;
+			if (error instanceof Error) message = error.message;
+			else message = String(error);
+			console.error({ message });
+			toast.error(message);
+		}
 	};
 
 	// payment method
 
 	const [paymentMethod, setPaymentMethod] = useState<"COD" | "CARD">("COD");
+
+	// handle place order and if successful remove cart items from redux
+
+	const { placeOrder } = usePlaceOrder();
+	const handlePlaceorder = async () => {
+		if (!token) return;
+
+		try {
+			const response = await placeOrder();
+
+			if (response.data.success) {
+				dispatch(resetAll());
+				toast("Order successfull");
+			} else {
+				console.log(response.data);
+			}
+		} catch (error) {
+			let message;
+			if (error instanceof Error) message = error.message;
+			else message = String(error);
+			console.error({ message });
+			toast.error(message);
+		}
+	};
 	return (
 		<section className="flex flex-col h-full w-full p-4 min-h-screen">
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
@@ -83,7 +117,11 @@ const Checkout = () => {
 					/>
 				</div>
 
-				<ActionSummary action="COMPLETE PURCHASE" cartTotal={cartState.total} />
+				<ActionSummary
+					callback={handlePlaceorder}
+					action="COMPLETE PURCHASE"
+					cartTotal={cartState.total}
+				/>
 			</div>
 		</section>
 	);

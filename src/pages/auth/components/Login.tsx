@@ -41,8 +41,10 @@ const Login: React.FC<{
 				dispatch(setToken(token));
 				dispatch(setUser({ name, email, address }));
 				navigate("/account");
+				console.log("logged in ");
 			} else {
 				toast.error(response.data.message);
+				console.log("problem with log");
 			}
 		} catch (error) {
 			let message;
