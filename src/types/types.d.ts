@@ -24,3 +24,18 @@ export interface CartProduct {
 	image: string[];
 	size: string;
 }
+
+export interface OrderProduct {
+	image: string;
+	name: string;
+	price: number;
+	productId: string;
+}
+
+export interface Order {
+	createdAt: Date;
+	items: OrderProduct[];
+	orderStatus: "Processing";
+	totalAmount: number;
+	_id: string;
+}

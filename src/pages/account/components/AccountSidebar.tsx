@@ -4,8 +4,8 @@ const AccountSidebar = () => {
 	const activeClass = "underline";
 	const inactiveClass = "";
 	return (
-		<nav className="flex h-full text-xl ">
-			<ul className="flex flex-col space-y-4">
+		<nav className=" text-xl relative ">
+			<ul className="inline-flex flex-col space-y-4 sticky top-20 ">
 				<li>
 					<NavLink
 						className={({ isActive }) =>

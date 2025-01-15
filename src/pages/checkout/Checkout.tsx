@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../store/store";
 import { updateAddress } from "../../store/userSlice";
 import { resetAll } from "../../store/cartSlice";
 import { toast } from "react-toastify";
-import usePlaceOrder from "../../hooks/usePlaceOrder";
+import placeOrderService from "../../services/placeOrderService";
 
 const Checkout = () => {
 	// cart state
@@ -72,12 +72,13 @@ const Checkout = () => {
 
 	// handle place order and if successful remove cart items from redux
 
-	const { placeOrder } = usePlaceOrder();
 	const handlePlaceorder = async () => {
 		if (!token) return;
 
 		try {
-			const response = await placeOrder();
+			const response = await placeOrderService(token);
+
+			console.log(response);
 
 			if (response.data.success) {
 				dispatch(resetAll());

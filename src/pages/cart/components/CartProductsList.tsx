@@ -5,19 +5,22 @@ import { CartProduct } from "../../../types/types";
 import PriceSpan from "../../../components/ui/PriceSpan";
 
 // reddux state
-import { useAppDispatch } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { removeProduct } from "../../../store/cartSlice";
-import useRemoveFromCart from "../../../hooks/useRemoveFromCart";
+import removeProductService from "../../../services/removeProductService";
+
+//
 const CartProductsList: React.FC<{
 	cartItems: CartProduct[];
 	callback?: (e: string) => void;
 }> = ({ cartItems }) => {
 	// remove product from cartSlice and db
-	const { removeFromCart } = useRemoveFromCart();
+	const token = useAppSelector(state => state.tokenReducer.token);
 
 	const dispatch = useAppDispatch();
 	const handleRemoveProduct = async (id: string) => {
-		removeFromCart(id);
+		if (!token) return;
+		removeProductService(id, token);
 		dispatch(removeProduct(id));
 	};
 	return (
