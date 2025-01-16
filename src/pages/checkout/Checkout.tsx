@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { backendUrl } from "../../App";
+import { toast } from "react-toastify";
 
 // components
 import CheckoutInfo from "./components/CheckoutInfo";
 import ActionSummary from "../../components/shared/ActionSummary";
 import PaymentMethod from "./components/PaymentMethod";
+
 // state
 
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { updateAddress } from "../../store/userSlice";
 import { resetAll } from "../../store/cartSlice";
-import { toast } from "react-toastify";
+
+// services
 import placeOrderService from "../../services/placeOrderService";
+import handleAdressUpdateService from "../../services/handleAdressUpdateService";
 
 const Checkout = () => {
 	// cart state
@@ -38,18 +40,14 @@ const Checkout = () => {
 		e.preventDefault();
 
 		try {
-			const response = await axios.put(
-				backendUrl + "/api/user/edit",
-				{
-					street,
-					town,
-					postcode,
-				},
-				{
-					headers: {
-						token,
-					},
-				}
+			if (!token) {
+				throw new Error("Token missing");
+			}
+			const response = await handleAdressUpdateService(
+				street,
+				town,
+				postcode,
+				token
 			);
 
 			if (!response.data.success) {

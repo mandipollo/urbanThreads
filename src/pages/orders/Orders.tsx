@@ -33,8 +33,8 @@ const Orders = () => {
 		fetchOrders();
 	}, [token]);
 	return (
-		<section className="flex flex-col  w-full">
-			<h2 className="text-4xl font-bold">YOUR PURCHASES</h2>
+		<section className="flex flex-col w-full">
+			<h2 className="text-xl lg:text-3xl font-bold">YOUR PURCHASES</h2>
 
 			{orders.length ? (
 				<OrderLists orders={orders} />

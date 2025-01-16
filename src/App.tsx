@@ -15,7 +15,6 @@ import Product from "./pages/product/Product";
 import UserAuth from "./pages/auth/UserAuth";
 import Account from "./pages/account/Account";
 import AccountSettings from "./pages/accountSettings/AccountSettings";
-import Membership from "./pages/membership/Membership";
 import Orders from "./pages/orders/Orders";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
@@ -54,10 +53,6 @@ const Route = createBrowserRouter([
 					{
 						path: "/account/settings",
 						element: <AccountSettings />,
-					},
-					{
-						path: "/account/member",
-						element: <Membership />,
 					},
 				],
 			},

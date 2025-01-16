@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import AccountSidebar from "./components/AccountSidebar";
 const Account = () => {
 	return (
-		<section className="flex flex-row p-2 w-full min-h-[calc(100vh-1em)]">
+		<section className="flex flex-row space-x-2 p-2 w-full min-h-[calc(100vh-1em)]">
 			<AccountSidebar />
 			<div className="flex flex-1 w-full h-full pl-2">
 				<Outlet />

@@ -9,7 +9,7 @@ interface CategoryProps {
 const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 	return (
 		<section className="flex flex-col w-screen md:grid md:grid-cols-2 md:py-20 text-xs">
-			<section className="flex flex-col gap-2 p-4  md:p-10 md:justify-center  ">
+			<section className="flex flex-col gap-2 p-2  md:p-10 md:justify-center  ">
 				<div className="flex space-x-4  items-center">
 					<Link aria-label="navigate to home" className="text-gray-400" to="/">
 						Home

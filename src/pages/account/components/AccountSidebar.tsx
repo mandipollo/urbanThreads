@@ -1,40 +1,32 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AccountSidebar = () => {
-	const activeClass = "underline";
-	const inactiveClass = "";
 	return (
 		<nav className=" text-xl relative ">
 			<ul className="inline-flex flex-col space-y-4 sticky top-20 ">
 				<li>
-					<NavLink
-						className={({ isActive }) =>
-							isActive ? activeClass : inactiveClass
-						}
-						to="/account"
-					>
-						ORDERS
-					</NavLink>
+					<Link to="/account">
+						<figure className="block lg:hidden">
+							<img
+								src="/svg/orderIcon.svg"
+								alt="order icon"
+								className="h-6 w-6 "
+							/>
+						</figure>
+						<p className=" hidden lg:block"> ORDERS</p>
+					</Link>
 				</li>
 				<li>
-					<NavLink
-						className={({ isActive }) =>
-							isActive ? activeClass : inactiveClass
-						}
-						to="/account/member"
-					>
-						MEMBERSHIP
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						className={({ isActive }) =>
-							isActive ? activeClass : inactiveClass
-						}
-						to="/account/settings"
-					>
-						ACCOUNT SETTINGS
-					</NavLink>
+					<Link to="/account/settings">
+						<figure className=" block lg:hidden">
+							<img
+								src="/svg/setting.svg"
+								alt="order icon"
+								className="h-6 w-6 "
+							/>
+						</figure>
+						<p className=" hidden lg:block"> ACCOUNT SETTINGS</p>
+					</Link>
 				</li>
 			</ul>
 		</nav>
