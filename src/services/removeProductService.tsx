@@ -9,15 +9,16 @@ const removeProductService = async (token: string, productId: string) => {
 		const response = await axios.delete(
 			backendUrl + "/api/user/removeFromCart",
 			{
-				headers: { token },
 				data: {
 					productId,
 				},
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			}
 		);
-		console.log(response);
 
-		return response.data;
+		return response;
 	} catch (error) {
 		let message;
 		if (error instanceof Error) message = error.message;

@@ -20,8 +20,18 @@ const CartProductsList: React.FC<{
 	const dispatch = useAppDispatch();
 	const handleRemoveProduct = async (id: string) => {
 		if (!token) return;
-		removeProductService(id, token);
-		dispatch(removeProduct(id));
+
+		try {
+			const response = await removeProductService(token, id);
+
+			if (response.data.success) {
+				dispatch(removeProduct(id));
+			} else {
+				throw new Error("Product unlisting failed!");
+			}
+		} catch (error) {
+			console.error("CartProductsList.tsx", " :: Error ❌ : ", error);
+		}
 	};
 	return (
 		<ul className="flex flex-col gap-2">

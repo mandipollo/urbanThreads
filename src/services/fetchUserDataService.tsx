@@ -6,7 +6,7 @@ const fetchUserDataService = async (token: string) => {
 		{},
 		{
 			headers: {
-				token,
+				Authorization: `Bearer ${token}`,
 			},
 		}
 	);

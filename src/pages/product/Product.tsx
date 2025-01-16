@@ -51,7 +51,7 @@ const Product: React.FC = () => {
 					},
 					{
 						headers: {
-							token,
+							Authorization: `Bearer ${token}`,
 						},
 					}
 				);

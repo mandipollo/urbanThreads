@@ -7,7 +7,7 @@ const fetchOrdersService = async (token: string) => {
 		{},
 		{
 			headers: {
-				token,
+				Authorization: `Bearer ${token}`,
 			},
 		}
 	);

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 //misc
 import { toast } from "react-toastify";
+import passwordValidator from "../../utilities/passwordValidator";
 // redux state
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { removeToken } from "../../store/tokenSlice";
@@ -16,7 +17,6 @@ import handleAdressUpdateService from "../../services/handleAdressUpdateService"
 import PersonalDetails from "./components/PersonalDetails";
 import PasswordChange from "./components/PasswordChange";
 import handlePasswordChangeService from "../../services/handlePasswordChangeService";
-import passwordValidator from "../../utilities/passwordValidator";
 
 const AccountSettings = () => {
 	const navigate = useNavigate();
@@ -77,10 +77,10 @@ const AccountSettings = () => {
 
 			if (passwordValidator(currentPassword, newPassword, confirmPassword)) {
 				const response = await handlePasswordChangeService(
-					token,
 					currentPassword,
 					newPassword,
-					confirmPassword
+					confirmPassword,
+					token
 				);
 				console.log(response);
 			}

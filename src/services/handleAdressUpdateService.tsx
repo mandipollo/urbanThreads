@@ -16,7 +16,7 @@ const handleAdressUpdateService = async (
 		},
 		{
 			headers: {
-				token,
+				Authorization: `Bearer ${token}`,
 			},
 		}
 	);

@@ -7,7 +7,7 @@ const placeOrderService = async (token: string) => {
 		{},
 		{
 			headers: {
-				token,
+				Authorization: `Bearer ${token}`,
 			},
 		}
 	);

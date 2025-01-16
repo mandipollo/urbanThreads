@@ -8,7 +8,7 @@ const handlePasswordChangeService = async (
 	token: string
 ) => {
 	const response = await axios.put(
-		backendUrl + "/api/user/passwordChange",
+		backendUrl + "/api/user/change-password",
 		{
 			currentPassword,
 			newPassword,
@@ -16,7 +16,7 @@ const handlePasswordChangeService = async (
 		},
 		{
 			headers: {
-				token,
+				Authorization: `Bearer ${token}`,
 			},
 		}
 	);
