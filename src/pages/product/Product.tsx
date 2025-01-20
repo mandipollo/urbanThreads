@@ -20,6 +20,7 @@ import { addProduct } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { Product as ProductType } from "../../types/types";
 import { useAppSelector } from "../../store/store";
+import Meta from "../../components/shared/Meta";
 
 const Product: React.FC = () => {
 	const sizes = ["S", "M", "L", "XL", "XXL"];
@@ -79,6 +80,11 @@ const Product: React.FC = () => {
 	}
 	return (
 		<section className="flex flex-col w-full">
+			<Meta
+				title={`Buy ${fetchedProduct.name} - Stylish & High-Quality`}
+				description={fetchedProduct.description}
+				keywords={`${fetchedProduct.name}, ${fetchedProduct.subCategory}, buy ${fetchedProduct.name}, stylish clothing, [Product Feature], add to cart, select size`}
+			/>
 			<h1 className="sr-only">{fetchedProduct.name} - Product Details</h1>
 			<div className="relative min-h-screen">
 				<section className="grid grid-flow-row md:grid-cols-2 gap-4">

@@ -1,22 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-//misc
+//notify
 import { toast } from "react-toastify";
+//utilities
 import passwordValidator from "../../utilities/passwordValidator";
 // redux state
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { removeToken } from "../../store/tokenSlice";
 import { resetAll } from "../../store/cartSlice";
 import { resetUser, updateAddress } from "../../store/userSlice";
-
-// component
-
-// service
+// api
 import handleAdressUpdateService from "../../services/handleAdressUpdateService";
+import handlePasswordChangeService from "../../services/handlePasswordChangeService";
+// components
 import PersonalDetails from "./components/PersonalDetails";
 import PasswordChange from "./components/PasswordChange";
-import handlePasswordChangeService from "../../services/handlePasswordChangeService";
+import Meta from "../../components/shared/Meta";
 
 const AccountSettings = () => {
 	const navigate = useNavigate();
@@ -83,6 +82,9 @@ const AccountSettings = () => {
 					token
 				);
 				console.log(response);
+				if (response.data.success) {
+					setEditPassword(!editPassword);
+				}
 			}
 		} catch (error) {
 			let message;
@@ -102,6 +104,12 @@ const AccountSettings = () => {
 
 	return (
 		<section className="flex flex-col w-full h-full  ">
+			<Meta
+				title="Account Settings - Manage Your Profile"
+				description="Update your personal details, change your password, and customize your preferences in the account settings. Keep your information secure and up-to-date."
+				keywords="account settings, manage profile, update details, change password, user preferences, secure account"
+			/>
+
 			<h2 className="font-bold text-3xl">SETTINGS</h2>
 			<div className="max-w-lg">
 				<PersonalDetails

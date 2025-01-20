@@ -4,6 +4,7 @@ import fetchOrdersService from "../../services/fetchOrdersService";
 import { toast } from "react-toastify";
 import OrderLists from "./components/OrderLists";
 import { Order } from "../../types/types";
+import Meta from "../../components/shared/Meta";
 
 const Orders = () => {
 	// order state
@@ -34,6 +35,11 @@ const Orders = () => {
 	}, [token]);
 	return (
 		<section className="flex flex-col w-full">
+			<Meta
+				title="Your Previous Orders - View Purchase History"
+				description="Browse your past orders and track your previous purchases. View detailed information, order status, and more."
+				keywords="order history, previous purchases, view orders, purchase history, track orders, order details"
+			/>
 			<h2 className="text-xl lg:text-3xl font-bold">YOUR PURCHASES</h2>
 
 			{orders.length ? (

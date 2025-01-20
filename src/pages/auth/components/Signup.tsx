@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+
+// api
 import { backendUrl } from "../../../App";
 import axios from "axios";
+// notify
 import { toast } from "react-toastify";
+// components
 import Button from "../../../components/ui/Button";
-
-// state management
+import Meta from "../../../components/shared/Meta";
 
 const Signup: React.FC<{
 	signupRef: React.RefObject<HTMLDivElement>;
@@ -37,6 +40,12 @@ const Signup: React.FC<{
 	};
 	return (
 		<section className="min-h-screen w-full flex flex-col gap-2 justify-center items-center text-sm">
+			<Meta
+				title="Sign Up - Create Your Account"
+				description="Sign up to create your account. Enjoy personalized shopping, track orders, and save your favorites. Join now for a better shopping experience!"
+				keywords="sign up, create account, register, user registration, join now, personalized shopping, account creation"
+			/>
+
 			<div ref={signupRef}>
 				<form
 					onSubmit={submitHandler}

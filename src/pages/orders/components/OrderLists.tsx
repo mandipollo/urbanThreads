@@ -2,7 +2,7 @@ import React from "react";
 import { Order } from "../../../types/types";
 
 import convertDate from "../../../utilities/convertDate";
-import FormattedPrice from "../../../../../admin/src/helper/FormattedPrice";
+import FormattedPrice from "../../../utilities/FormattedPrice";
 import Button from "../../../components/ui/Button";
 
 interface OrderListsProps {

@@ -1,5 +1,9 @@
 import React from "react";
+
+// types
 import { CartProduct } from "../../../types/types";
+
+// components
 import CartProductsList from "./CartProductsList";
 
 const CartProducts: React.FC<{

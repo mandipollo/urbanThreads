@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// api
 import { backendUrl } from "../../../App";
 import axios from "axios";
-import { toast } from "react-toastify";
 
+// notify
+import { toast } from "react-toastify";
 // components
 import Button from "../../../components/ui/Button";
 // state management
 import { setToken } from "../../../store/tokenSlice";
-import { useAppDispatch } from "../../../store/store";
-import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../store/userSlice";
+import { useAppDispatch } from "../../../store/store";
 import { initializeCart } from "../../../store/cartSlice";
+import Meta from "../../../components/shared/Meta";
 
 const Login: React.FC<{
 	signupInView: () => void;
@@ -56,6 +60,11 @@ const Login: React.FC<{
 	};
 	return (
 		<section className="min-h-screen w-full flex flex-col gap-2 justify-center items-center text-sm">
+			<Meta
+				title="Login - Access Your Account"
+				description="Log in to your account to view your orders, manage your details, and complete your purchase. Secure and easy login process."
+				keywords="login, user login, account access, sign in, secure login, login page, user authentication"
+			/>
 			<div ref={signinRef}>
 				<form
 					onSubmit={submitHandler}

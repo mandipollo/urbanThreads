@@ -1,5 +1,7 @@
 import React, { SetStateAction } from "react";
+// components
 import Button from "../../../components/ui/Button";
+// state
 import { UserState } from "../../../store/userSlice";
 
 interface PersonalDetailsProps {

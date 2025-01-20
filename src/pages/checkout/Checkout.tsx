@@ -12,9 +12,10 @@ import { useAppDispatch, useAppSelector } from "../../store/store";
 import { updateAddress } from "../../store/userSlice";
 import { resetAll } from "../../store/cartSlice";
 
-// services
+// api
 import placeOrderService from "../../services/placeOrderService";
 import handleAdressUpdateService from "../../services/handleAdressUpdateService";
+import Meta from "../../components/shared/Meta";
 
 const Checkout = () => {
 	// cart state
@@ -94,6 +95,11 @@ const Checkout = () => {
 	};
 	return (
 		<section className="flex flex-col h-full w-full p-4 min-h-screen">
+			<Meta
+				title="Checkout - Complete Your Purchase"
+				description="Finalize your order and complete your purchase. Review your items, enter shipping details, and choose a payment method."
+				keywords="checkout, complete purchase, review order, finalize order, payment, shipping details, buy now, secure checkout"
+			/>
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
 			<div className="flex flex-col gap-10 md:flex-row flex-1 relative">
 				<div className="flex flex-col w-3/5 gap-10">

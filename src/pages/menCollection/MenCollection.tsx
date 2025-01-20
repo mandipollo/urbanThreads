@@ -6,6 +6,7 @@ import useProductsCategory from "../../hooks/useProductsCategory";
 // shared components
 import ProductAll from "../../components/shared/ProductAll";
 import Category from "../../components/shared/Category";
+import Meta from "../../components/shared/Meta";
 
 /////
 const MenCollection: React.FC = () => {
@@ -22,6 +23,11 @@ const MenCollection: React.FC = () => {
 			aria-labelledby="men-collection-heading"
 			className="flex flex-col w-full justify-center items-center "
 		>
+			<Meta
+				title="Men`s Clothing Collection - Stylish Fashion for Men"
+				description="Explore the latest trends in men's fashion. From casual wear to formal styles, find the perfect outfit for any occasion."
+				keywords="men's clothing, men's fashion, casual wear, formal wear, stylish outfits, men's fashion collection, men's clothing trends"
+			/>
 			<h2 id="men-collection-heading" className="sr-only">
 				browse latest mens products
 			</h2>

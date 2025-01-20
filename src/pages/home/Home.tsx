@@ -1,14 +1,18 @@
+import { useState, useEffect } from "react";
+
+//api
+import axios from "axios";
+import { backendUrl } from "../../App";
+// notify
 import { toast } from "react-toastify";
+// types
+import { Product } from "../../types/types";
+// components
+import NewIn from "./components/NewIn";
 import ExploreMore from "./components/ExploreMore";
 import FeaturedList from "./components/FeaturedList";
 import Hero from "./components/Hero";
-
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { backendUrl } from "../../App";
-import { Product } from "../../types/types";
-import NewIn from "./components/NewIn";
-
+import Meta from "../../components/shared/Meta";
 const Home = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 
@@ -40,6 +44,11 @@ const Home = () => {
 	}, []);
 	return (
 		<main className="flex flex-col justify-center items-center ">
+			<Meta
+				title="UrbanThreads"
+				description="Build your wardrobe with styles made from innovative materials."
+				keywords="Clothes , men's and women's"
+			/>
 			<Hero />
 			<ExploreMore />
 			<NewIn products={products} />

@@ -1,12 +1,15 @@
 import React from "react";
 
+// types
 import { CartProduct } from "../../../types/types";
 // components
 import PriceSpan from "../../../components/ui/PriceSpan";
 
-// reddux state
+// state
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { removeProduct } from "../../../store/cartSlice";
+
+// api
 import removeProductService from "../../../services/removeProductService";
 
 //
