@@ -29,7 +29,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
 					</li>
 					<li className="flex justify-center items-center">
 						<NavLink
-							to="/product/women"
+							to="/women-collection"
 							aria-label="browse women products"
 							className={({ isActive }) =>
 								isActive ? "underline underline-offset-1" : ""
@@ -40,7 +40,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
 					</li>
 					<li className="flex justify-center items-center">
 						<NavLink
-							to="/product/men"
+							to="/men-collection"
 							aria-label="browse men products"
 							className={({ isActive }) =>
 								isActive ? "underline underline-offset-1" : ""

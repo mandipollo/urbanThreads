@@ -18,10 +18,10 @@ const Hero = () => {
 					src="/image/hero_desktop.webp"
 				></img>
 				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-2 md:space-x-10  ">
-					<Link to="/product/women">
+					<Link to="/women-collection">
 						<ActionButton action="Shop Women's" />
 					</Link>
-					<Link to="/product/men">
+					<Link to="/men-collection">
 						<ActionButton action="Shop Men's" />
 					</Link>
 				</div>

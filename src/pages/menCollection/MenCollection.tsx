@@ -33,7 +33,9 @@ const MenCollection: React.FC = () => {
 			</h2>
 			<Category category="men" setFilter={setFilter} filter={filter} />
 
-			{filteredProducts && <ProductAll filteredProducts={filteredProducts} />}
+			{filteredProducts && (
+				<ProductAll category="Men" filteredProducts={filteredProducts} />
+			)}
 		</section>
 	);
 };

@@ -42,7 +42,7 @@ const Orders = () => {
 			/>
 			<h2 className="text-xl lg:text-3xl font-bold">YOUR PURCHASES</h2>
 
-			{orders.length ? (
+			{orders.length > 0 ? (
 				<OrderLists orders={orders} />
 			) : (
 				<div>

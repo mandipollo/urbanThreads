@@ -49,7 +49,7 @@ const Route = createBrowserRouter([
 				),
 			},
 			{
-				path: "/product/women",
+				path: "/women-collection",
 				element: (
 					<Suspense fallback={<div>Loading...</div>}>
 						<WomenCollection />
@@ -57,7 +57,7 @@ const Route = createBrowserRouter([
 				),
 			},
 			{
-				path: "/product/men",
+				path: "/men-collection",
 				element: (
 					<Suspense fallback={<div>Loading...</div>}>
 						<MenCollection />

@@ -37,5 +37,5 @@ export interface Order {
 	items: OrderProduct[];
 	orderStatus: "Processing";
 	totalAmount: number;
-	_id: string;
+	orderId: string;
 }

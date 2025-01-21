@@ -16,7 +16,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 				{orders.map(order => (
 					<li
 						className="flex flex-col w-full border rounded-md"
-						key={order._id}
+						key={order.orderId}
 					>
 						<div className="bg-[#EFF2F2] p-2 flex flex-col lg:flex-row justify-between">
 							<div className="flex gap-2 lg:gap-6">
@@ -38,7 +38,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 
 							<div>
 								<p> ORDER NO</p>
-								<p className="text-sm">#{order._id}</p>
+								<p className="text-sm">#{order.orderId}</p>
 							</div>
 						</div>
 

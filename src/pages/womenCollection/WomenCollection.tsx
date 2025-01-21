@@ -30,9 +30,11 @@ const WomenCollection: React.FC = () => {
 			<h2 id="men-collection-heading" className="sr-only">
 				browse latest womens products
 			</h2>
-			<Category category="women" setFilter={setFilter} filter={filter} />
+			<Category category="Women" setFilter={setFilter} filter={filter} />
 
-			{filteredProducts && <ProductAll filteredProducts={filteredProducts} />}
+			{filteredProducts && (
+				<ProductAll category="Women" filteredProducts={filteredProducts} />
+			)}
 		</section>
 	);
 };

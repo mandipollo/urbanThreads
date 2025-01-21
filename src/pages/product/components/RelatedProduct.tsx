@@ -2,15 +2,21 @@ import React from "react";
 import ProductCard from "../../../components/cards/ProductCard";
 
 import useProductSubCategory from "../../../hooks/useProductSubCategory";
+import { useLocation } from "react-router-dom";
 
 const RelatedProduct: React.FC<{
 	subCategory: string;
 	productId: string | undefined;
 }> = ({ subCategory, productId }) => {
-	// fetch sub category products
-	const relatedProducts = useProductSubCategory(subCategory) || [];
+	// retrieve the category
 
-	// filter already shown product
+	const url = useLocation().pathname;
+	const category = url.split("/")[2];
+
+	// fetch sub category products
+	const relatedProducts = useProductSubCategory(category, subCategory) || [];
+
+	// filter already shown products
 
 	const filteredRelatedProducts = relatedProducts.filter(
 		product => product._id !== productId

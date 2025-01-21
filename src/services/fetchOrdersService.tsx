@@ -11,6 +11,7 @@ const fetchOrdersService = async (token: string) => {
 			},
 		}
 	);
+
 	return response;
 };
 

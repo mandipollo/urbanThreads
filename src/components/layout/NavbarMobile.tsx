@@ -58,7 +58,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 					<div className="grid grid-cols-2 h-20 w-full">
 						<Link
 							onClick={handleHamburgerMenu}
-							to="/product/women"
+							to="/women-collection"
 							className="border flex justify-center items-center"
 						>
 							<p>Women</p>
@@ -66,7 +66,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 
 						<Link
 							onClick={handleHamburgerMenu}
-							to="/product/men"
+							to="/men-collection"
 							className="border flex justify-center items-center"
 						>
 							<p>Men</p>
