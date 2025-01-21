@@ -39,11 +39,15 @@ const Root = () => {
 				setHamburgerMenu={setHamburgerMenu}
 				hamburgerMenu={hamburgerMenu}
 			/>
-			{hamburgerMenu && (
+			{/* {hamburgerMenu && (
 				<div className="fixed inset-0 z-40 bg-white overscroll-contain">
-					<NavbarMobile category={category} setCategory={setCategory} />
+					<NavbarMobile
+						setHamburgerMenu={setHamburgerMenu}
+						category={category}
+						setCategory={setCategory}
+					/>
 				</div>
-			)}
+			)} */}
 
 			<section className="flex flex-col flex-grow ">
 				<Outlet />
