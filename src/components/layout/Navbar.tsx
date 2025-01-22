@@ -32,11 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ hamburgerMenu, setHamburgerMenu }) => {
 	};
 
 	return (
-		<header
-			role="navigation"
-			aria-label="navigation header"
-			className="flex sticky top-0 z-40 bg-white"
-		>
+		<header className="flex sticky top-0 z-40 bg-white">
 			<NavbarMobile
 				showCartSummary={showCartSummary}
 				setShowCartSummary={setShowCartSummary}

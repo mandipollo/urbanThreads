@@ -19,15 +19,13 @@ const Orders = () => {
 		const fetchOrders = async () => {
 			try {
 				const response = await fetchOrdersService(token);
-				if (!response.data.success) {
-					throw new Error("Fetching order unsuccessful");
+				if (response.data.success) {
+					setOrders(response.data.orderDetails);
 				}
-				setOrders(response.data.orderDetails);
 			} catch (error) {
 				let message;
 				if (error instanceof Error) message = error.message;
 				else message = String(error);
-				console.error({ message });
 				toast.error(message);
 			}
 		};

@@ -23,10 +23,7 @@ const NewIn: React.FC<NewInProps> = ({ products }) => {
 				<h3 className="text-xl p-2">New in</h3>
 			</div>
 			<div className="w-full overflow-hidden ">
-				<ul
-					aria-label="list of new products"
-					className="grid grid-flow-col gap-2 auto-cols-[100%] md:auto-cols-[25%]  overflow-x-auto snap-x snap-mandatory scroll-smooth"
-				>
+				<ul className="grid grid-flow-col gap-2 auto-cols-[100%] md:auto-cols-[25%]  overflow-x-auto snap-x snap-mandatory scroll-smooth">
 					{products ? (
 						products.map(product => (
 							<ProductCard key={product._id} product={product} />

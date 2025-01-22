@@ -6,7 +6,7 @@ interface ProductCard {
 }
 const ProductCard: React.FC<ProductCard> = ({ product }) => {
 	return (
-		<li role="article" className="flex flex-col group snap-always snap-start ">
+		<li className="flex flex-col group snap-always snap-start ">
 			<figure
 				key={product._id}
 				className={`overflow-hidden w-full group relative aspect-[3/4] `}

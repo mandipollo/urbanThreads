@@ -47,16 +47,13 @@ const AccountSettings = () => {
 				token
 			);
 
-			if (!response.data.success) {
-				console.log(response.data.message);
-			} else {
+			if (response.data.success) {
 				dispatch(updateAddress({ street, town, postcode }));
 			}
 		} catch (error) {
 			let message;
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
-			console.error({ message });
 			toast.error(message);
 		}
 	};
@@ -81,7 +78,6 @@ const AccountSettings = () => {
 					confirmPassword,
 					token
 				);
-				console.log(response);
 				if (response.data.success) {
 					setEditPassword(!editPassword);
 				}
@@ -90,7 +86,6 @@ const AccountSettings = () => {
 			let message;
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
-			console.error({ message });
 			setError(message);
 		}
 	};

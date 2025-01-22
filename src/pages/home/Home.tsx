@@ -15,7 +15,6 @@ import Hero from "./components/Hero";
 import Meta from "../../components/shared/Meta";
 const Home = () => {
 	const [products, setProducts] = useState<Product[]>([]);
-
 	const [bestSeller, setBestseller] = useState<Product[]>([]);
 	useEffect(() => {
 		const fetchData = async () => {
@@ -35,7 +34,6 @@ const Home = () => {
 				let message;
 				if (error instanceof Error) message = error.message;
 				else message = String(error);
-				console.error({ message });
 				toast.error(message);
 			}
 		};

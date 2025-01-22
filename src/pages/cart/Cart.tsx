@@ -19,10 +19,8 @@ const Cart: React.FC = () => {
 	const handleCheckout = () => {
 		if (token) {
 			navigate("/checkout");
-			console.log("navigate to checkout");
 		} else {
 			navigate("/userAuth");
-			console.log("navigate to login ");
 		}
 	};
 	return (

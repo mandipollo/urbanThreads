@@ -28,14 +28,12 @@ const Signup: React.FC<{
 			if (response.data.success) {
 				toast("User registered successfully");
 				signinInView();
-			} else {
-				toast.error(response.data.message);
 			}
 		} catch (error) {
 			let message;
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
-			console.error({ message });
+			toast.error(message);
 		}
 	};
 	return (

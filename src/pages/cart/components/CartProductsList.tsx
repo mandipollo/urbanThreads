@@ -11,6 +11,7 @@ import { removeProduct } from "../../../store/cartSlice";
 
 // api
 import removeProductService from "../../../services/removeProductService";
+import { toast } from "react-toastify";
 
 //
 const CartProductsList: React.FC<{
@@ -29,11 +30,12 @@ const CartProductsList: React.FC<{
 
 			if (response.data.success) {
 				dispatch(removeProduct(id));
-			} else {
-				throw new Error("Product unlisting failed!");
 			}
 		} catch (error) {
-			console.error("CartProductsList.tsx", " :: Error ❌ : ", error);
+			let message;
+			if (error instanceof Error) message = error.message;
+			else message = String(error);
+			toast.error(message);
 		}
 	};
 	return (

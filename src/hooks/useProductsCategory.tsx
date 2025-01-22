@@ -12,16 +12,13 @@ const useProductsCategory = (category: string): Product[] | null => {
 					backendUrl + "/api/product/fetchCategory",
 					{ category: category }
 				);
-				if (!response.data.success) {
-					return;
+				if (response.data.success) {
+					setProducts(response.data.product);
 				}
-
-				setProducts(response.data.product);
 			} catch (error) {
 				let message;
 				if (error instanceof Error) message = error.message;
 				else message = String(error);
-				console.error({ message });
 				toast.error(message);
 			}
 		};

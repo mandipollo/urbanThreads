@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../store/store";
 import { ToastContainer } from "react-toastify";
 //component
-import NavbarMobile from "../components/layout/NavbarMobile";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/footer/Footer";
 const Root = () => {
@@ -14,7 +13,7 @@ const Root = () => {
 	const token = useAppSelector(state => state.tokenReducer.token);
 
 	// Navbar state for mobile screen
-	const [category, setCategory] = useState<string>("Women");
+
 	const [hamburgerMenu, setHamburgerMenu] = useState<boolean>(false);
 
 	// Disable scrolling when hamburger menu is active

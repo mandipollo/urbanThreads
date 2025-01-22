@@ -20,7 +20,7 @@ const useProduct = (productId: string | null): Product | null => {
 					}
 				);
 
-				if (!response.data) {
+				if (!response.data.success) {
 					return toast.error(response.data.message);
 				}
 
@@ -29,7 +29,6 @@ const useProduct = (productId: string | null): Product | null => {
 				let message;
 				if (error instanceof Error) message = error.message;
 				else message = String(error);
-				console.error({ message });
 				toast.error(message);
 			}
 		};

@@ -4,7 +4,7 @@ const Footer = ({}) => {
 	return (
 		<footer
 			aria-labelledby="footer-label"
-			className="flex w-full text-gray-400 min-h-44"
+			className="flex w-full text-white min-h-44"
 		>
 			<h4 id="footer-label" className="sr-only">
 				Footer section consists of various navigation links
@@ -12,12 +12,8 @@ const Footer = ({}) => {
 			<div className="grid md:grid-cols-2 md:m-2 p-10 rounded-md bg-black w-full">
 				<section className="flex flex-col gap-4">
 					<h3>UrbanThreads</h3>
-					<p className="text-gray-500 text-xl">This is a demo site.</p>
-					<a
-						target="_blank"
-						className="text-gray-600"
-						href="http://mandipollo.uk"
-					>
+					<p className="text-xl">This is a demo site.</p>
+					<a target="_blank" href="http://mandipollo.uk">
 						mandipollo.uk
 					</a>
 				</section>

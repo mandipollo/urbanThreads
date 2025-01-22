@@ -27,13 +27,14 @@ const Product: React.FC = () => {
 	const sizes = ["S", "M", "L", "XL", "XXL"];
 	const { productId } = useParams();
 	const [size, setSize] = useState<string>("");
+
+	// service fetch product data
 	const fetchedProduct = useProduct(productId || null);
 
 	// check if product already exists in cartSlice ? notify user :  store product to cart
 
 	const dispatch = useDispatch();
 	const cartItemState = useAppSelector(state => state.cartReducer.items);
-
 	const token = useAppSelector(state => state.tokenReducer.token);
 
 	//add product id to user model
@@ -57,10 +58,10 @@ const Product: React.FC = () => {
 						},
 					}
 				);
-
-				dispatch(addProduct({ ...fetchedProduct, size }));
-				console.log(response);
-				toast("Product added to cart!");
+				if (response.data.success) {
+					dispatch(addProduct({ ...fetchedProduct, size }));
+					toast("Product added to cart!");
+				}
 			} else {
 				toast("Product already added to cart");
 			}
@@ -68,7 +69,7 @@ const Product: React.FC = () => {
 			let message;
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
-			console.error({ message });
+			toast.error(message);
 		}
 	};
 

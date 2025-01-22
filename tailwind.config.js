@@ -5,7 +5,6 @@ export default {
 		extend: {
 			fontFamily: {
 				roboto: ["roboto", "sans-serif"],
-				poiret: ["Poiret One", "sans-serif"],
 			},
 		},
 	},
