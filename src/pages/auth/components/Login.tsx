@@ -59,7 +59,10 @@ const Login: React.FC<{
 		}
 	};
 	return (
-		<section className="min-h-screen w-full flex flex-col gap-2 justify-center items-center text-sm">
+		<section
+			aria-label="Login page"
+			className="min-h-screen w-full flex flex-col gap-2 justify-center items-center text-sm"
+		>
 			<Meta
 				title="Login - Access Your Account"
 				description="Log in to your account to view your orders, manage your details, and complete your purchase. Secure and easy login process."

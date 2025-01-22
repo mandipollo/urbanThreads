@@ -14,14 +14,23 @@ const Hero = () => {
 				<img
 					loading="lazy"
 					alt="hero image showcasing general products for men and women"
-					className="flex w-full h-full object-cover"
-					src="/image/hero_desktop.webp"
+					className="hidden md:flex w-full h-full object-cover"
+					src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548283/hero_desktop_lpvnls.webp"
+				></img>
+				<img
+					loading="lazy"
+					alt="hero image showcasing general products for men and women"
+					className="flex md:hidden w-full h-full object-cover"
+					src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548285/hero_mobile_smshoe.webp"
 				></img>
 				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-2 md:space-x-10  ">
-					<Link to="/women-collection">
+					<Link
+						aria-label="Navigate to women's collection"
+						to="/women-collection"
+					>
 						<ActionButton action="Shop Women's" />
 					</Link>
-					<Link to="/men-collection">
+					<Link aria-label="Navigate to men's collection" to="/men-collection">
 						<ActionButton action="Shop Men's" />
 					</Link>
 				</div>

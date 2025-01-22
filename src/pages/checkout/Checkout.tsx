@@ -75,6 +75,9 @@ const Checkout = () => {
 		if (!token) return;
 
 		try {
+			if (cartState.items.length <= 0) {
+				throw new Error("Please add items to cart!");
+			}
 			const response = await placeOrderService(token);
 
 			console.log(response);

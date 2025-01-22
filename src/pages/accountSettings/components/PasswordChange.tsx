@@ -43,6 +43,7 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({
 		<div className="border-b flex p-4 items-center w-full">
 			{!editPassword ? (
 				<button
+					aria-label="Show form for password change"
 					onClick={() => setEditPassword(!editPassword)}
 					className="underline"
 				>
@@ -50,11 +51,12 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({
 				</button>
 			) : (
 				<form
+					aria-label="Submit form with new password  "
 					onSubmit={handlePasswordChange}
 					className="flex flex-col w-full space-y-2"
 				>
 					{error && (
-						<span className="border p-4 border-red-400">
+						<span aria-live="polite" className="border p-4 border-red-400">
 							<p className="text-red-400">{error}</p>
 						</span>
 					)}
@@ -112,21 +114,33 @@ const PasswordChange: React.FC<PasswordChangeProps> = ({
 							type={showPassword.confirmPassword ? "text" : "password"}
 							className="p-4 border focus:outline-black "
 						/>
-						<span
+						<button
+							aria-label={
+								showPassword.password ? "Hide password" : "Show password"
+							}
 							onClick={() => handleShowPassword("confirmPassword")}
 							className="absolute right-2 top-12"
 						>
 							<figure>
 								{!showPassword.confirmPassword ? (
-									<img src="/svg/close-eye.svg" className="h-6 w-6" alt="" />
+									<img
+										src="/svg/close-eye.svg"
+										className="h-6 w-6"
+										alt="hidden password"
+									/>
 								) : (
-									<img src="/svg/open-eye.svg" className="h-6 w-6" alt="" />
+									<img
+										src="/svg/open-eye.svg"
+										className="h-6 w-6"
+										alt="visible password"
+									/>
 								)}
 							</figure>
-						</span>
+						</button>
 					</div>
 					<Button text="SAVE" type="submit" />
 					<button
+						aria-label="Cancel password change"
 						onClick={() => setEditPassword(false)}
 						className="border border-black p-4 hover:text-gray-600"
 						type="button"

@@ -26,7 +26,10 @@ const Cart: React.FC = () => {
 		}
 	};
 	return (
-		<section className="flex flex-col h-full w-full p-2 min-h-screen">
+		<section
+			aria-label="Cart page renders all your cart items"
+			className="flex flex-col h-full w-full p-2 min-h-screen"
+		>
 			<Meta
 				title="Shopping Cart - Review Your Items"
 				description="Review the items in your shopping cart. Modify quantities, remove items, and proceed to checkout to complete your purchase."

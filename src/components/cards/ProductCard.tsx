@@ -25,15 +25,8 @@ const ProductCard: React.FC<ProductCard> = ({ product }) => {
 				/>
 			</figure>
 			<div className="flex flex-col gap-2 py-2">
-				<p className="text-xs md:text-sm " aria-label={product.name}>
-					{product.name}
-				</p>
-				<p
-					className="text-xs md:text-sm"
-					aria-label={`Price : ${product.price}`}
-				>
-					£{product.price}
-				</p>
+				<p className="text-xs md:text-sm ">{product.name}</p>
+				<p className="text-xs md:text-sm">£{product.price}</p>
 			</div>
 		</li>
 	);

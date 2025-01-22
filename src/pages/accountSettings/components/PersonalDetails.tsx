@@ -32,14 +32,16 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
 		<div className="border-y flex items-center p-4">
 			{!editAddress && userState.address.postcode ? (
 				<div className=" flex flex-col">
-					<p aria-label="user street">{userState.name.toUpperCase()}</p>
-					<p aria-label="user street">{userState.address.street}</p>
-					<p aria-label="user town">{userState.address.town}</p>
-					<p aria-label="user postcode">{userState.address.postcode}</p>
+					<p>{userState.name.toUpperCase()}</p>
+					<p>{userState.address.street}</p>
+					<p>{userState.address.town}</p>
+					<p>{userState.address.postcode}</p>
 					<div>
 						<button
 							type="button"
-							aria-label="toogle address form"
+							aria-label={
+								editAddress ? "Close the address form" : "Open the address form"
+							}
 							onClick={() => setEditAddress(!editAddress)}
 							className="underline"
 						>

@@ -20,7 +20,7 @@ const Orders = () => {
 			try {
 				const response = await fetchOrdersService(token);
 				if (!response.data.success) {
-					return;
+					throw new Error("Fetching order unsuccessful");
 				}
 				setOrders(response.data.orderDetails);
 			} catch (error) {
@@ -34,7 +34,10 @@ const Orders = () => {
 		fetchOrders();
 	}, [token]);
 	return (
-		<section className="flex flex-col w-full">
+		<section
+			aria-label="purchase history page"
+			className="flex flex-col w-full"
+		>
 			<Meta
 				title="Your Previous Orders - View Purchase History"
 				description="Browse your past orders and track your previous purchases. View detailed information, order status, and more."

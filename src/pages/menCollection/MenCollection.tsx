@@ -31,7 +31,7 @@ const MenCollection: React.FC = () => {
 			<h2 id="men-collection-heading" className="sr-only">
 				browse latest mens products
 			</h2>
-			<Category category="men" setFilter={setFilter} filter={filter} />
+			<Category category="Men" setFilter={setFilter} filter={filter} />
 
 			{filteredProducts && (
 				<ProductAll category="Men" filteredProducts={filteredProducts} />

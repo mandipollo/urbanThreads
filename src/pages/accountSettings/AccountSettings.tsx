@@ -137,7 +137,7 @@ const AccountSettings = () => {
 					newPassword={newPassword}
 				/>
 
-				<button className="p-4" onClick={handleSignout}>
+				<button aria-label="Sign out" className="p-4" onClick={handleSignout}>
 					SIGN OUT
 				</button>
 			</div>

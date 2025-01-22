@@ -3,6 +3,7 @@ import React from "react";
 const HoverRevealButton: React.FC<{ text: string }> = ({ text }) => {
 	return (
 		<button
+			aria-label={text}
 			type="button"
 			className=" h-full w-20 inline-flex items-center justify-center group relative overflow-hidden"
 		>

@@ -24,13 +24,13 @@ const PaymentMethod: React.FC<{
 					>
 						<div className="flex space-x-2">
 							<figure>
-								<img src="/svg/visa.svg" className="h-6 w-6" alt="visa" />
+								<img src="/svg/visa.svg" className="h-6 w-6" alt="visa icon" />
 							</figure>
 							<figure>
 								<img
 									src="/svg/mastercard.svg"
 									className="h-6 w-6"
-									alt="mastercard"
+									alt="mastercard icon"
 								/>
 							</figure>
 						</div>
@@ -52,11 +52,7 @@ const PaymentMethod: React.FC<{
 					>
 						<div className="flex space-x-2">
 							<figure>
-								<img
-									src="/svg/cod.svg"
-									className="h-6 w-6"
-									alt="cash on delivery"
-								/>
+								<img src="/svg/cod.svg" className="h-6 w-6" alt="cod icon" />
 							</figure>
 						</div>
 						<p>COD</p>

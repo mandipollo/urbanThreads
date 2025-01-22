@@ -1,14 +1,12 @@
 import React from "react";
 import { Product } from "../../../types/types";
 import ProductCard from "../../../components/cards/ProductCard";
+import SkeletonCard from "../../../components/cards/SkeletonCard";
 interface FeaturedListProps {
 	bestseller: Product[];
 }
 
 const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
-	if (!bestseller) {
-		return <p>Loading...</p>;
-	}
 	return (
 		<section
 			aria-labelledby="featured-heading"
@@ -24,7 +22,8 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 				<div className="w-full md:w-1/2 md:sticky top-14 left-0 h-screen">
 					<figure className="h-full w-full aspect-square">
 						<img
-							src="/image/bestseller.webp"
+							alt="featured"
+							src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548282/bestseller-1_xdc41r.webp"
 							className=" object-cover h-full w-full"
 						/>
 					</figure>
@@ -35,23 +34,13 @@ const FeaturedList: React.FC<FeaturedListProps> = ({ bestseller }) => {
 						aria-label="List of our featured products"
 						className="grid grid-cols-2 gap-2 auto-rows-fr md:overflow-y-auto"
 					>
-						{bestseller.length
-							? bestseller.map(product => (
-									<ProductCard key={product._id} product={product} />
-							  ))
-							: Array.from({ length: 12 }).map((_, index) => (
-									<li
-										key={index}
-										className="flex flex-col snap-always snap-start"
-										role="presentation"
-									>
-										<div className="aspect-[3/4] w-full bg-gray-300 animate-pulse rounded"></div>
-										<div className="mt-2 flex flex-col gap-1 px-2">
-											<div className="w-3/4 h-4 bg-gray-300 animate-pulse rounded"></div>
-											<div className="w-1/2 h-4 bg-gray-300 animate-pulse rounded"></div>
-										</div>
-									</li>
-							  ))}
+						{bestseller.length ? (
+							bestseller.map(product => (
+								<ProductCard key={product._id} product={product} />
+							))
+						) : (
+							<SkeletonCard cards={12} />
+						)}
 					</ul>
 				</div>
 			</div>

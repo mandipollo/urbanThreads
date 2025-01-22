@@ -10,6 +10,7 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 let persistor = persistStore(store);
 
 //
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { HelmetProvider } from "react-helmet-async";
 // Lazy loaded pages

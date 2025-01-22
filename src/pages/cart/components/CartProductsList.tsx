@@ -57,13 +57,14 @@ const CartProductsList: React.FC<{
 
 						<div>
 							<button
+								aria-label={`Remove ${item.name} from cart`}
 								onClick={() => handleRemoveProduct(item._id)}
 								className="border p-2"
 							>
 								<figure className="h-4 w-4">
 									<img
 										src="/svg/close.svg"
-										alt=""
+										alt="Close"
 										className="h-full w-full object-cover"
 									/>
 								</figure>

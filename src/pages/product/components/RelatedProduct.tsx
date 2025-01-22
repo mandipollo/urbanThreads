@@ -3,6 +3,7 @@ import ProductCard from "../../../components/cards/ProductCard";
 
 import useProductSubCategory from "../../../hooks/useProductSubCategory";
 import { useLocation } from "react-router-dom";
+import SkeletonCard from "../../../components/cards/SkeletonCard";
 
 const RelatedProduct: React.FC<{
 	subCategory: string;
@@ -21,16 +22,18 @@ const RelatedProduct: React.FC<{
 	const filteredRelatedProducts = relatedProducts.filter(
 		product => product._id !== productId
 	);
-	if (!filteredRelatedProducts) {
-		return;
-	}
+
 	return (
-		<section className="flex flex-col py-20 gap-8">
-			<h1 className="pl-2">RELATED ITEMS</h1>
-			<ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden  ">
-				{filteredRelatedProducts.map(product => (
-					<ProductCard key={product._id} product={product} />
-				))}
+		<section className="flex flex-col py-20 gap-8 px-2">
+			<h5 className="pl-2">RELATED ITEMS</h5>
+			<ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 overflow-hidden  ">
+				{filteredRelatedProducts ? (
+					filteredRelatedProducts.map(product => (
+						<ProductCard key={product._id} product={product} />
+					))
+				) : (
+					<SkeletonCard cards={12} />
+				)}
 			</ul>
 		</section>
 	);

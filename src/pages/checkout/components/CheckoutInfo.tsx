@@ -57,21 +57,21 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 		>
 			<div className="border-b flex flex-col pb-10">
 				<h3 className="font-normal text-base">MY INFORMATION</h3>
-				<p aria-label="user name">{userState.name}</p>
-				<p aria-label="user email">{userState.email}</p>
+				<p>{userState.name}</p>
+				<p>{userState.email}</p>
 			</div>
 
 			<h3 className="font-normal py-2 text-base">DELIVERY ADDRESS</h3>
 
 			{!editAddress && userState.address.postcode ? (
 				<div className="border-b flex flex-col pb-10">
-					<p aria-label="user street">{userState.address.street}</p>
-					<p aria-label="user town">{userState.address.town}</p>
-					<p aria-label="user postcode">{userState.address.postcode}</p>
+					<p>{userState.address.street}</p>
+					<p>{userState.address.town}</p>
+					<p>{userState.address.postcode}</p>
 					<div>
 						<button
 							type="button"
-							aria-label="toogle address form"
+							aria-label="Show address edit form"
 							onClick={() => setEditAddress(!editAddress)}
 							className="underline p-2"
 						>
@@ -120,6 +120,7 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 
 					<Button text="SAVE" type="submit" />
 					<button
+						aria-label="Cancel changes"
 						onClick={() => setEditAddress(false)}
 						className="border border-black p-4 hover:text-gray-600"
 						type="button"

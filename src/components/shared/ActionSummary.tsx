@@ -15,6 +15,7 @@ const ActionSummary: React.FC<ActionSummaryProps> = ({
 	callback,
 	action,
 }) => {
+	const totalPrice = cartTotal > 100 ? cartTotal : cartTotal + 3.99;
 	return (
 		<div className="h-full md:w-2/5">
 			<div className="sticky top-20 right-0 flex flex-col space-y-2">
@@ -28,11 +29,8 @@ const ActionSummary: React.FC<ActionSummaryProps> = ({
 					{cartTotal > 100 ? <p>FREE</p> : <PriceSpan price={3.99} />}
 				</div>
 				<div className="flex w-full justify-between text-lg">
-					<p>TOTAL</p>
-					<PriceSpan
-						fontSize="text-xl"
-						price={cartTotal > 50 ? cartTotal : cartTotal + 3.99}
-					/>
+					<p aria-label={`Total price ${totalPrice}`}>TOTAL</p>
+					<PriceSpan fontSize="text-xl" price={totalPrice} />
 				</div>
 				<Button type="button" callback={callback} text={action} />
 				<PaymentMerchantsSection />

@@ -15,6 +15,7 @@ const CartSummary: React.FC = () => {
 
 	return (
 		<div
+			aria-label="Summary of cart items"
 			role="dialog"
 			className="fixed flex-col top-14 right-2 z-50 flex w-96 space-y-2 bg-white p-4 shadow-md "
 		>
@@ -25,20 +26,29 @@ const CartSummary: React.FC = () => {
 				</div>
 			) : (
 				<div className="flex  flex-col w-full gap-10 ">
-					<div className="overflow-y-scroll max-h-[500px]">
+					<div
+						aria-label="renders your products list "
+						className="overflow-y-scroll max-h-[500px]"
+					>
 						<CartProductsList cartItems={cartState.items} />
 					</div>
 					<div className="flex flex-col gap-2">
 						<div className="flex justify-between">
-							<p>ORDER VALUE</p> <PriceSpan price={cartState.total} />
+							<p>ORDER VALUE</p>
+							<PriceSpan price={cartState.total} />
 						</div>
 						<Link
+							aria-label="Link to checkout page"
 							className="border text-center p-2 bg-black text-white"
 							to="/checkout"
 						>
 							CHECKOUT
 						</Link>
-						<Link className="border text-center p-2 bg-white " to="/cart">
+						<Link
+							aria-label="Link to shopping cart page"
+							className="border text-center p-2 bg-white "
+							to="/cart"
+						>
 							SHOPPING BAG
 						</Link>
 					</div>

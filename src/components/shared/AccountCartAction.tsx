@@ -21,17 +21,22 @@ const AccountCartAction: React.FC<AccountCartActionProps> = ({
 	const { pathname } = useLocation();
 	return (
 		<div
+			aria-label="account and cart"
 			onMouseLeave={() => setShowCartSummary(false)}
 			className="h-full items-center flex space-x-2 justify-end gap-2 pr-4"
 		>
 			{token ? (
 				<Link to="/account" aria-label="navigate to user account page">
 					<figure>
-						<img src="/svg/account.svg" alt="account " className="h-4 w-4" />
+						<img
+							src="/svg/account.svg"
+							alt="navigate to users account "
+							className="h-4 w-4"
+						/>
 					</figure>
 				</Link>
 			) : (
-				<Link to="/userAuth" aria-label="log in">
+				<Link to="/userAuth" aria-label="navigate to login/signup page">
 					<figure>
 						<img src="/svg/account.svg" alt="log in" className="h-4 w-4" />
 					</figure>
@@ -39,10 +44,17 @@ const AccountCartAction: React.FC<AccountCartActionProps> = ({
 			)}
 
 			<div onMouseEnter={() => handleShowCartSummary(pathname)}>
-				<Link to="/cart" className="relative" aria-label="navigate to cart">
+				<Link
+					to="/cart"
+					className="relative"
+					aria-label="navigate to cart page"
+				>
 					<CartSvg color="black" />
 					{cartItemsLength > 0 && (
-						<span className="absolute h-4 w-4 flex justify-center items-center -top-2 -right-3 bg-red-500 rounded-full text-xs text-white">
+						<span
+							aria-label={`No. of items in cart ${cartItemsLength}`}
+							className="absolute h-4 w-4 flex justify-center items-center -top-2 -right-3 bg-red-500 rounded-full text-xs text-white"
+						>
 							{cartItemsLength}
 						</span>
 					)}

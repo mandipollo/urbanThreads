@@ -5,19 +5,22 @@ const DUMMY_DATA = [
 		id: 1,
 		title: "Shredded jeans",
 		category: "Shop women's",
-		image: "/image/women_t-shirts.webp",
+		image:
+			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548290/women_t-shirts_qgrijh.webp",
 	},
 	{
 		id: 2,
 		title: "Recycled Jacket",
 		category: "Shop men's",
-		image: "/image/man_jackets.webp",
+		image:
+			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548285/man_jackets_guzfrb.webp",
 	},
 	{
 		id: 3,
 		title: "Casual T-Shirt",
 		category: "Shop now",
-		image: "/image/women_jeans.webp",
+		image:
+			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548290/women_jeans_etizg6.webp",
 	},
 ];
 const ExploreMore = () => {
