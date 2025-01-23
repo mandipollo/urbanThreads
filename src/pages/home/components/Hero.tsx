@@ -12,13 +12,11 @@ const Hero = () => {
 			</h1>
 			<figure className="relative w-full aspect-video ">
 				<img
-					loading="lazy"
 					alt="hero image showcasing general products for men and women"
 					className="hidden md:flex w-full h-full object-cover"
 					src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548283/hero_desktop_lpvnls.webp"
 				></img>
 				<img
-					loading="lazy"
 					alt="hero image showcasing general products for men and women"
 					className="flex md:hidden w-full h-full object-cover"
 					src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548285/hero_mobile_smshoe.webp"

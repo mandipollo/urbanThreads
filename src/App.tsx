@@ -13,6 +13,7 @@ let persistor = persistStore(store);
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { HelmetProvider } from "react-helmet-async";
+import Loading from "./components/shared/Loading";
 // Lazy loaded pages
 const Root = lazy(() => import("./pages/Root"));
 const Home = lazy(() => import("./pages/home/Home"));
@@ -36,7 +37,7 @@ const Route = createBrowserRouter([
 	{
 		path: "/",
 		element: (
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<Loading />}>
 				<Root />
 			</Suspense>
 		),
@@ -44,7 +45,7 @@ const Route = createBrowserRouter([
 			{
 				index: true,
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Home />
 					</Suspense>
 				),
@@ -52,7 +53,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/women-collection",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<WomenCollection />
 					</Suspense>
 				),
@@ -60,7 +61,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/men-collection",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<MenCollection />
 					</Suspense>
 				),
@@ -68,7 +69,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/product/:gender/:productId",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Product />
 					</Suspense>
 				),
@@ -76,7 +77,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/userAuth",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<UserAuth />
 					</Suspense>
 				),
@@ -84,7 +85,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/cart",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Cart />
 					</Suspense>
 				),
@@ -92,7 +93,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/checkout",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Checkout />
 					</Suspense>
 				),
@@ -100,7 +101,7 @@ const Route = createBrowserRouter([
 			{
 				path: "/account",
 				element: (
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Account />
 					</Suspense>
 				),
@@ -108,7 +109,7 @@ const Route = createBrowserRouter([
 					{
 						index: true,
 						element: (
-							<Suspense fallback={<div>Loading...</div>}>
+							<Suspense fallback={<Loading />}>
 								<Orders />
 							</Suspense>
 						),
@@ -116,7 +117,7 @@ const Route = createBrowserRouter([
 					{
 						path: "/account/settings",
 						element: (
-							<Suspense fallback={<div>Loading...</div>}>
+							<Suspense fallback={<Loading />}>
 								<AccountSettings />
 							</Suspense>
 						),
@@ -128,7 +129,7 @@ const Route = createBrowserRouter([
 	{
 		path: "*",
 		element: (
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<Loading />}>
 				<ErrorPage />
 			</Suspense>
 		),
