@@ -36,7 +36,7 @@ const AccountCartAction: React.FC<AccountCartActionProps> = ({
 					</figure>
 				</Link>
 			) : (
-				<Link to="/userAuth" aria-label="navigate to login/signup page">
+				<Link to="/user-auth" aria-label="navigate to login/signup page">
 					<figure>
 						<img src="/svg/account.svg" alt="log in" className="h-4 w-4" />
 					</figure>

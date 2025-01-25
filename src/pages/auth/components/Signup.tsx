@@ -1,39 +1,52 @@
 import React, { useState } from "react";
-
 // api
-import { backendUrl } from "../../../App";
-import axios from "axios";
+import signupService from "../service/signupService";
 // notify
 import { toast } from "react-toastify";
-// components
-import Button from "../../../components/ui/Button";
-import Meta from "../../../components/shared/Meta";
 
 const Signup: React.FC<{
 	signupRef: React.RefObject<HTMLDivElement>;
 	signinInView: () => void;
 }> = ({ signupRef, signinInView }) => {
+	//
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [showPassword, setShowPassword] = useState<boolean>(false);
+	const handleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+
+	//
+
 	const [name, setName] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsLoading(true);
 		try {
-			const response = await axios.post(backendUrl + "/api/user/register", {
-				name,
-				email,
-				password,
-			});
+			if (!name || !email || !password || password.length < 8) {
+				throw new Error(
+					"Please provide valid inputs. Password must be at least 8 characters long."
+				);
+			}
+
+			const response = await signupService(name, email, password);
 
 			if (response.data.success) {
 				toast("User registered successfully");
 				signinInView();
+			} else {
+				throw new Error(
+					response.data.message || "Login failed. Please try again."
+				);
 			}
 		} catch (error) {
-			let message;
+			let message = "An error occurred.";
 			if (error instanceof Error) message = error.message;
 			else message = String(error);
 			toast.error(message);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 	return (
@@ -41,12 +54,6 @@ const Signup: React.FC<{
 			aria-label="Sign up section"
 			className="min-h-screen w-full flex flex-col gap-2 justify-center items-center text-sm"
 		>
-			<Meta
-				title="Sign Up - Create Your Account"
-				description="Sign up to create your account. Enjoy personalized shopping, track orders, and save your favorites. Join now for a better shopping experience!"
-				keywords="sign up, create account, register, user registration, join now, personalized shopping, account creation"
-			/>
-
 			<div ref={signupRef}>
 				<form
 					onSubmit={submitHandler}
@@ -60,7 +67,7 @@ const Signup: React.FC<{
 							id="name"
 							className="border p-2 "
 							type="text"
-							placeholder="max"
+							placeholder="Skywalker"
 							required
 						/>
 					</div>
@@ -72,24 +79,51 @@ const Signup: React.FC<{
 							id="email"
 							className="border p-2 "
 							type="email"
-							placeholder="max@gmail.com"
+							placeholder="Skywalker@gmail.com"
 							required
 						/>
 					</div>
 
-					<div className="flex flex-col gap-2">
+					<div className=" relative flex flex-col gap-2">
 						<label htmlFor="password">Password</label>
 						<input
 							onChange={e => setPassword(e.target.value)}
 							value={password}
 							id="password"
 							className="border p-2 "
-							type="password"
+							type={showPassword ? "text" : "password"}
 							placeholder="Please enter your password"
 							required
 						/>
+						<span
+							onClick={handleShowPassword}
+							className="absolute right-2 top-8"
+						>
+							<figure>
+								{!showPassword ? (
+									<img
+										src="/svg/close-eye.svg"
+										className="h-6 w-6"
+										alt="hide password"
+									/>
+								) : (
+									<img
+										src="/svg/open-eye.svg"
+										className="h-6 w-6"
+										alt="show password"
+									/>
+								)}
+							</figure>
+						</span>
 					</div>
-					<Button type="submit" text="Sign up" />
+					<button
+						disabled={isLoading}
+						type="submit"
+						aria-label="sign up , new user"
+						className="bg-black p-4 w-full border text-white hover:bg-stone-800 "
+					>
+						SIGN UP
+					</button>
 				</form>
 			</div>
 		</section>

@@ -14,6 +14,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { HelmetProvider } from "react-helmet-async";
 import Loading from "./components/shared/Loading";
+
 // Lazy loaded pages
 const Root = lazy(() => import("./pages/Root"));
 const Home = lazy(() => import("./pages/home/Home"));
@@ -23,6 +24,13 @@ const WomenCollection = lazy(
 );
 const Product = lazy(() => import("./pages/product/Product"));
 const UserAuth = lazy(() => import("./pages/auth/UserAuth"));
+const ForgotPassword = lazy(
+	() => import("./pages/password-forgot/ForgotPassword")
+);
+const PasswordReset = lazy(
+	() => import("./pages/password-reset/Password_reset")
+);
+
 const Account = lazy(() => import("./pages/account/Account"));
 const AccountSettings = lazy(
 	() => import("./pages/accountSettings/AccountSettings")
@@ -75,10 +83,26 @@ const Route = createBrowserRouter([
 				),
 			},
 			{
-				path: "/userAuth",
+				path: "/user-auth",
 				element: (
 					<Suspense fallback={<Loading />}>
 						<UserAuth />
+					</Suspense>
+				),
+			},
+			{
+				path: "/forgot-password",
+				element: (
+					<Suspense fallback={<Loading />}>
+						<ForgotPassword />
+					</Suspense>
+				),
+			},
+			{
+				path: "/password-reset?/:token",
+				element: (
+					<Suspense fallback={<Loading />}>
+						<PasswordReset />
 					</Suspense>
 				),
 			},

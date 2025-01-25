@@ -94,7 +94,7 @@ const AccountSettings = () => {
 		dispatch(removeToken());
 		dispatch(resetAll());
 		dispatch(resetUser());
-		navigate("/userAuth");
+		navigate("/user-auth");
 	};
 
 	return (

@@ -28,7 +28,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
 							<figure>
 								<img
 									src="/svg/threadIcon.svg"
-									className="h-8 w-8"
+									className="h-6 w-6"
 									alt="urban thread logo"
 								/>
 							</figure>

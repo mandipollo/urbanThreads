@@ -43,8 +43,19 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 					</button>
 				</div>
 				<div className="flex justify-center items-center">
-					<Link to="/" aria-label="navigate to homepage">
+					<Link
+						to="/"
+						aria-label="navigate to homepage"
+						className="flex flex-row gap-2"
+					>
 						<h2 className="font-poiret">UrbanThreads</h2>
+						<figure>
+							<img
+								src="/svg/threadIcon.svg"
+								className="h-6 w-6"
+								alt="urban thread logo"
+							/>
+						</figure>
 					</Link>
 				</div>
 				<AccountCartAction
@@ -147,11 +158,6 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 									className="flex justify-between items-center w-full"
 								>
 									<p>Gifts</p>
-								</button>
-							</li>
-							<li aria-label="Login or signup" className="w-full">
-								<button className="flex justify-between items-center w-full">
-									<p>Login/Register</p>
 								</button>
 							</li>
 						</ul>
