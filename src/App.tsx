@@ -1,4 +1,10 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+	BrowserRouter,
+	createBrowserRouter,
+	Route,
+	RouterProvider,
+	Routes,
+} from "react-router-dom";
 import { Suspense, lazy } from "react";
 // state
 import { Provider } from "react-redux";
@@ -14,6 +20,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { HelmetProvider } from "react-helmet-async";
 import Loading from "./components/shared/Loading";
+import ScrollToTop from "./components/wrapper/ScrollTop";
 
 // Lazy loaded pages
 const Root = lazy(() => import("./pages/Root"));
@@ -40,133 +47,51 @@ const Cart = lazy(() => import("./pages/cart/Cart"));
 const Checkout = lazy(() => import("./pages/checkout/Checkout"));
 const ErrorPage = lazy(() => import("./pages/error/ErrorPage"));
 
-// Define routes with lazy loading
-const Route = createBrowserRouter([
-	{
-		path: "/",
-		element: (
-			<Suspense fallback={<Loading />}>
-				<Root />
-			</Suspense>
-		),
-		children: [
-			{
-				index: true,
-				element: (
-					<Suspense fallback={<Loading />}>
-						<Home />
-					</Suspense>
-				),
-			},
-			{
-				path: "/women-collection",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<WomenCollection />
-					</Suspense>
-				),
-			},
-			{
-				path: "/men-collection",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<MenCollection />
-					</Suspense>
-				),
-			},
-			{
-				path: "/product/:gender/:productId",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<Product />
-					</Suspense>
-				),
-			},
-			{
-				path: "/user-auth",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<UserAuth />
-					</Suspense>
-				),
-			},
-			{
-				path: "/forgot-password",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<ForgotPassword />
-					</Suspense>
-				),
-			},
-			{
-				path: "/password-reset?/:token",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<PasswordReset />
-					</Suspense>
-				),
-			},
-			{
-				path: "/cart",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<Cart />
-					</Suspense>
-				),
-			},
-			{
-				path: "/checkout",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<Checkout />
-					</Suspense>
-				),
-			},
-			{
-				path: "/account",
-				element: (
-					<Suspense fallback={<Loading />}>
-						<Account />
-					</Suspense>
-				),
-				children: [
-					{
-						index: true,
-						element: (
-							<Suspense fallback={<Loading />}>
-								<Orders />
-							</Suspense>
-						),
-					},
-					{
-						path: "/account/settings",
-						element: (
-							<Suspense fallback={<Loading />}>
-								<AccountSettings />
-							</Suspense>
-						),
-					},
-				],
-			},
-		],
-	},
-	{
-		path: "*",
-		element: (
-			<Suspense fallback={<Loading />}>
-				<ErrorPage />
-			</Suspense>
-		),
-	},
-]);
-
 function App() {
 	return (
-		<div className=" flex font-roboto font-light">
+		<div className="flex font-roboto font-light">
 			<HelmetProvider>
 				<Provider store={store}>
 					<PersistGate loading={null} persistor={persistor}>
-						<RouterProvider router={Route}></RouterProvider>
+						<BrowserRouter>
+							<ScrollToTop>
+								<Suspense fallback={<Loading />}>
+									<Routes>
+										<Route path="/" element={<Root />}>
+											<Route index element={<Home />} />
+											<Route
+												path="women-collection"
+												element={<WomenCollection />}
+											/>
+											<Route
+												path="men-collection"
+												element={<MenCollection />}
+											/>
+											<Route
+												path="product/:gender/:productId"
+												element={<Product />}
+											/>
+											<Route path="user-auth" element={<UserAuth />} />
+											<Route
+												path="forgot-password"
+												element={<ForgotPassword />}
+											/>
+											<Route
+												path="password-reset/:token"
+												element={<PasswordReset />}
+											/>
+											<Route path="cart" element={<Cart />} />
+											<Route path="checkout" element={<Checkout />} />
+											<Route path="account" element={<Account />}>
+												<Route index element={<Orders />} />
+												<Route path="settings" element={<AccountSettings />} />
+											</Route>
+										</Route>
+										<Route path="*" element={<ErrorPage />} />
+									</Routes>
+								</Suspense>
+							</ScrollToTop>
+						</BrowserRouter>
 					</PersistGate>
 				</Provider>
 			</HelmetProvider>

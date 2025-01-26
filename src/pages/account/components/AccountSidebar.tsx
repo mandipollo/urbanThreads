@@ -10,7 +10,7 @@ const AccountSidebar = () => {
 							<img
 								src="/svg/orderIcon.svg"
 								alt="order icon"
-								className="h-6 w-6 "
+								className="h-4 w-4 "
 							/>
 						</figure>
 						<p className=" hidden lg:block"> ORDERS</p>
@@ -25,7 +25,7 @@ const AccountSidebar = () => {
 							<img
 								src="/svg/setting.svg"
 								alt="order icon"
-								className="h-6 w-6 "
+								className="h-4 w-4 "
 							/>
 						</figure>
 						<p className=" hidden lg:block"> ACCOUNT SETTINGS</p>

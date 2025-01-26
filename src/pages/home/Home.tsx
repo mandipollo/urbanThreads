@@ -1,45 +1,12 @@
-import { useState, useEffect } from "react";
-
-//api
-import axios from "axios";
-import { backendUrl } from "../../App";
-// notify
-import { toast } from "react-toastify";
-// types
-import { Product } from "../../types/types";
+import React from "react";
 // components
 import NewIn from "./components/NewIn";
 import ExploreMore from "./components/ExploreMore";
-import FeaturedList from "./components/FeaturedList";
 import Hero from "./components/Hero";
 import Meta from "../../components/shared/Meta";
-const Home = () => {
-	const [products, setProducts] = useState<Product[]>([]);
-	const [bestSeller, setBestseller] = useState<Product[]>([]);
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await axios.get(backendUrl + "/api/product/fetchAll");
-				if (response.data.success) {
-					const fetchedProducts: Product[] = response.data.products;
+import BestSeller from "./components/BestSeller";
 
-					setProducts(fetchedProducts.slice(0, 5));
-					setBestseller(
-						fetchedProducts.filter(product => product.bestseller !== false)
-					);
-				} else {
-					toast.error(response.data.message);
-				}
-			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
-				toast.error(message);
-			}
-		};
-
-		fetchData();
-	}, []);
+const Home: React.FC = () => {
 	return (
 		<main className="flex flex-col justify-center items-center ">
 			<Meta
@@ -49,8 +16,8 @@ const Home = () => {
 			/>
 			<Hero />
 			<ExploreMore />
-			<NewIn products={products} />
-			<FeaturedList bestseller={bestSeller} />
+			<NewIn />
+			<BestSeller />
 		</main>
 	);
 };

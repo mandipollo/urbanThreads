@@ -105,7 +105,7 @@ const AccountSettings = () => {
 				keywords="account settings, manage profile, update details, change password, user preferences, secure account"
 			/>
 
-			<h2 className="font-bold text-3xl">SETTINGS</h2>
+			<h2 className="text-xl lg:text-3xl font-bold">SETTINGS</h2>
 			<div className="max-w-lg">
 				<PersonalDetails
 					editAddress={editAddress}

@@ -17,7 +17,7 @@ const CartSummary: React.FC = () => {
 		<div
 			aria-label="Summary of cart items"
 			role="dialog"
-			className="fixed flex-col top-14 right-2 z-50 flex w-96 space-y-2 bg-white p-4 shadow-md "
+			className="fixed flex-col top-14 right-2 z-50 flex max-w-96 w-full space-y-2 bg-white p-4 shadow-md "
 		>
 			{cartState.items.length === 0 ? (
 				<div className="flex flex-col">

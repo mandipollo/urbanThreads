@@ -24,7 +24,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 		>
 			<div className="grid grid-cols-3 w-full flex-row justify-between items-center h-14">
 				<div>
-					<button role="button" className="pl-4" onClick={handleHamburgerMenu}>
+					<button role="button" className="pl-2" onClick={handleHamburgerMenu}>
 						<figure className="relative">
 							{hamburgerMenu ? (
 								<img
@@ -48,7 +48,6 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 						aria-label="navigate to homepage"
 						className="flex flex-row gap-2"
 					>
-						<h2 className="font-poiret">UrbanThreads</h2>
 						<figure>
 							<img
 								src="/svg/threadIcon.svg"
@@ -56,6 +55,7 @@ const NavbarMobile: React.FC<NavbarMobileProps> = ({
 								alt="urban thread logo"
 							/>
 						</figure>
+						<h2>UrbanThreads</h2>
 					</Link>
 				</div>
 				<AccountCartAction
