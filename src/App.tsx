@@ -1,10 +1,4 @@
-import {
-	BrowserRouter,
-	createBrowserRouter,
-	Route,
-	RouterProvider,
-	Routes,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 // state
 import { Provider } from "react-redux";

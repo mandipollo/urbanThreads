@@ -2,11 +2,15 @@ import React, { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 
 interface CategoryProps {
-	setFilter: React.Dispatch<SetStateAction<string>>;
-	filter: string;
+	setSubCategory: React.Dispatch<SetStateAction<string>>;
+	subCategory: string;
 	category: "Women" | "Men";
 }
-const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
+const Category: React.FC<CategoryProps> = ({
+	setSubCategory,
+	subCategory,
+	category,
+}) => {
 	return (
 		<section
 			aria-label={`Collection of ${category} products`}
@@ -21,8 +25,8 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 
 					<button
 						aria-label="render all products"
-						onClick={() => setFilter("")}
-						className={`p-2 border ${filter === "" && "border-black"} `}
+						onClick={() => setSubCategory("")}
+						className={`p-2 border ${subCategory === "" && "border-black"} `}
 					>
 						{category === "Men" ? " Men's Shop All" : "Women's Shop All"}
 					</button>
@@ -49,9 +53,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="render only coats"
 					className={`flex flex-col group border h-ful ${
-						filter === "coat" && " border-black "
+						subCategory === "coat" && " border-black "
 					}  `}
-					onClick={() => setFilter("coat")}
+					onClick={() => setSubCategory("coat")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -69,9 +73,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to hoodie"
 					className={`flex flex-col group border h-full  ${
-						filter === "hoodie" && " border-black"
+						subCategory === "hoodie" && " border-black"
 					}  `}
-					onClick={() => setFilter("hoodie")}
+					onClick={() => setSubCategory("hoodie")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -89,9 +93,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to jacket"
 					className={`flex flex-col group border h-full  ${
-						filter === "jacket" && " border-black"
+						subCategory === "jacket" && " border-black"
 					}  `}
-					onClick={() => setFilter("jacket")}
+					onClick={() => setSubCategory("jacket")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -109,9 +113,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to short"
 					className={`flex flex-col group border h-full  ${
-						filter === "short" && " border-black"
+						subCategory === "short" && " border-black"
 					}  `}
-					onClick={() => setFilter("short")}
+					onClick={() => setSubCategory("short")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -129,9 +133,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to sneaker"
 					className={`flex flex-col group border h-full  ${
-						filter === "sneaker" && " border-black"
+						subCategory === "sneaker" && " border-black"
 					}  `}
-					onClick={() => setFilter("sneaker")}
+					onClick={() => setSubCategory("sneaker")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -145,9 +149,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to sweatshirt"
 					className={`flex flex-col group border h-full ${
-						filter === "sweatshirt" && " border-black"
+						subCategory === "sweatshirt" && " border-black"
 					}  `}
-					onClick={() => setFilter("sweatshirt")}
+					onClick={() => setSubCategory("sweatshirt")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -167,9 +171,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to trouser"
 					className={`flex flex-col group border h-40 ${
-						filter === "trouser" && " border-black"
+						subCategory === "trouser" && " border-black"
 					}  `}
-					onClick={() => setFilter("trouser")}
+					onClick={() => setSubCategory("trouser")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
@@ -187,9 +191,9 @@ const Category: React.FC<CategoryProps> = ({ setFilter, filter, category }) => {
 				<button
 					aria-label="set filter to tshirt"
 					className={`flex flex-col group border h-full ${
-						filter === "tshirt" && " border-black"
+						subCategory === "tshirt" && " border-black"
 					}  `}
-					onClick={() => setFilter("tshirt")}
+					onClick={() => setSubCategory("tshirt")}
 				>
 					<figure className="h-40 w-40 flex flex-col">
 						<img
