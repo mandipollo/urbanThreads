@@ -12,8 +12,10 @@ import Meta from "../../components/shared/Meta";
 import { toast } from "react-toastify";
 import PaginationForm from "../../components/shared/PaginationForm";
 import { Product } from "../../types/types";
+import { useSearchParams } from "react-router-dom";
 const WomenCollection: React.FC = () => {
-	const [subCategory, setSubCategory] = useState<string>("all");
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [subCategory, setSubCategory] = useState<string>("");
 
 	//
 
@@ -22,6 +24,12 @@ const WomenCollection: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(1);
 
+	// reset page to 0 whenever subcategory changes
+	useEffect(() => {
+		setPage(0);
+	}, [subCategory]);
+
+	// fetch products based on page and subcategory ,
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -46,6 +54,10 @@ const WomenCollection: React.FC = () => {
 		fetchData();
 	}, [page, subCategory]);
 
+	// Update URL whenever the page changes
+	useEffect(() => {
+		setSearchParams({ filter: subCategory, page: page.toString() });
+	}, [page, subCategory, setSearchParams]);
 	return (
 		<section
 			aria-labelledby="men-collection-heading"

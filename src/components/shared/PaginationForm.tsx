@@ -32,7 +32,7 @@ const PaginationForm: React.FC<PaginationFormProps> = ({
 				<figure>
 					<img src="/svg/arrow-left.svg" alt="previous " className="h-4 w-4" />
 				</figure>
-				<p className={`${page === 0 && "text-gray-400"}`}>Previous</p>
+				<p className={`${page === 0 && "text-gray-400"} `}>Previous</p>
 			</button>
 			<p>
 				{page + 1} of {totalPages}

@@ -14,6 +14,7 @@ import fetchProductsService from "../../services/fetchProductsService";
 /////
 const MenCollection: React.FC = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const [subCategory, setSubCategory] = useState<string>("");
 
 	// fetch paginated all products at inital render
@@ -23,6 +24,12 @@ const MenCollection: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(1);
 
+	// reset page to 0 whenever subcategory changes
+	useEffect(() => {
+		setPage(0);
+	}, [subCategory]);
+
+	// fetch products based on page and subcategory ,
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -45,7 +52,7 @@ const MenCollection: React.FC = () => {
 
 	// Update URL whenever the page changes
 	useEffect(() => {
-		setSearchParams({ subcategory: subCategory, page: page.toString() });
+		setSearchParams({ filter: subCategory, page: page.toString() });
 	}, [page, subCategory, setSearchParams]);
 
 	return (
