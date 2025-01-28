@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 
 // services
 
-import fetchProductAllByCategoryService from "../../services/fetchProductsService";
-
 // shared components
 import Category from "../../components/shared/Category";
 import ProductAll from "../../components/shared/ProductAll";
 import Meta from "../../components/shared/Meta";
 
 import { toast } from "react-toastify";
-import PaginationForm from "../../components/shared/PaginationForm";
+import Pagination from "../../components/shared/Pagination";
 import { Product } from "../../types/types";
 import { useSearchParams } from "react-router-dom";
+import fetchProductsService from "../../services/fetchProductsService";
 const WomenCollection: React.FC = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [_, setSearchParams] = useSearchParams();
 	const [subCategory, setSubCategory] = useState<string>("");
 
 	//
@@ -33,12 +32,7 @@ const WomenCollection: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetchProductAllByCategoryService(
-					"Women",
-					page,
-					subCategory
-				);
-
+				const response = await fetchProductsService("Women", page, subCategory);
 				if (response.data.success) {
 					const products = await response.data.product;
 					setProducts(products);
@@ -79,7 +73,7 @@ const WomenCollection: React.FC = () => {
 
 			{products && <ProductAll products={products} />}
 
-			<PaginationForm totalPages={totalPages} setPage={setPage} page={page} />
+			<Pagination totalPages={totalPages} setPage={setPage} page={page} />
 		</section>
 	);
 };

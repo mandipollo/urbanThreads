@@ -3,7 +3,7 @@ import ProductSizes from "./ProductSizes";
 import { Product } from "../../../types/types";
 
 interface ProductInfoProps {
-	fetchedProduct: Product;
+	product: Product;
 	sizes: string[];
 	size: string;
 	setSize: React.Dispatch<SetStateAction<string>>;
@@ -11,11 +11,11 @@ interface ProductInfoProps {
 	handleAddProductToCart: (
 		productId: string,
 		size: string,
-		fetchedProduct: Product
+		product: Product
 	) => void;
 }
 const ProductInfo: React.FC<ProductInfoProps> = ({
-	fetchedProduct,
+	product,
 	sizes,
 	size,
 	setSize,
@@ -27,8 +27,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 			<div className="sticky top-4 flex flex-col p-2 md:p-10 gap-10">
 				<div className="w-full justify-center items-center">
 					<div>
-						<h4 id="product-name">{fetchedProduct.name.toLocaleUpperCase()}</h4>
-						<p role="definition">{fetchedProduct.price}</p>
+						<h4 id="product-name">{product.name.toLocaleUpperCase()}</h4>
+						<p role="definition">{product.price}</p>
 					</div>
 				</div>
 				<div aria-labelledby="size-heading" className="flex flex-col gap-10">
@@ -38,7 +38,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 							<ProductSizes
 								size={size}
 								key={i}
-								fetchedProduct={fetchedProduct}
+								product={product}
 								setSize={setSize}
 								productSize={i}
 							/>
@@ -47,9 +47,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 					{productId && (
 						<button
 							disabled={size.length === 0}
-							onClick={() =>
-								handleAddProductToCart(productId, size, fetchedProduct)
-							}
+							onClick={() => handleAddProductToCart(productId, size, product)}
 							aria-label="Add to cart"
 							type="button"
 							className="hover:bg-[#343434] bg-black text-white w-full py-4 disabled:cursor-not-allowed "
@@ -65,7 +63,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 					>
 						<h4 id="description-heading">DESCRIPTION</h4>
 						<p role="definition" className="text-sm">
-							{fetchedProduct.description}
+							{product.description}
 						</p>
 					</div>
 					<div

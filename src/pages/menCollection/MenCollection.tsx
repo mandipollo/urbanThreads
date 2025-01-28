@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import ProductAll from "../../components/shared/ProductAll";
 import Category from "../../components/shared/Category";
 import Meta from "../../components/shared/Meta";
-import PaginationForm from "../../components/shared/PaginationForm";
+import Pagination from "../../components/shared/Pagination";
 import { Product } from "../../types/types";
 
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ import fetchProductsService from "../../services/fetchProductsService";
 
 /////
 const MenCollection: React.FC = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [_, setSearchParams] = useSearchParams();
 
 	const [subCategory, setSubCategory] = useState<string>("");
 
@@ -75,7 +75,7 @@ const MenCollection: React.FC = () => {
 			/>
 
 			{products && <ProductAll products={products} />}
-			<PaginationForm totalPages={totalPages} setPage={setPage} page={page} />
+			<Pagination totalPages={totalPages} setPage={setPage} page={page} />
 		</section>
 	);
 };

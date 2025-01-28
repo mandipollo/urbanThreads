@@ -3,18 +3,18 @@ import { Product } from "../../../types/types";
 
 interface ProductSizeProps {
 	setSize: React.Dispatch<SetStateAction<string>>;
-	fetchedProduct: Product;
+	product: Product;
 	productSize: string;
 	size: string;
 }
 
 const ProductSizes: React.FC<ProductSizeProps> = ({
 	setSize,
-	fetchedProduct,
+	product,
 	productSize,
 	size,
 }) => {
-	const isAvailable = fetchedProduct.sizes.includes(productSize);
+	const isAvailable = product.sizes.includes(productSize);
 	const isSelected = size === productSize;
 
 	return (

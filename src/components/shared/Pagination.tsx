@@ -1,12 +1,12 @@
 import React, { SetStateAction } from "react";
 
-interface PaginationFormProps {
+interface PaginationProps {
 	page: number;
 	setPage: React.Dispatch<SetStateAction<number>>;
 	totalPages: number;
 }
 
-const PaginationForm: React.FC<PaginationFormProps> = ({
+const Pagination: React.FC<PaginationProps> = ({
 	page,
 	setPage,
 	totalPages,
@@ -51,4 +51,4 @@ const PaginationForm: React.FC<PaginationFormProps> = ({
 	);
 };
 
-export default PaginationForm;
+export default Pagination;

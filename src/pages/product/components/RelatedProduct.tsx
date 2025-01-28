@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "../../../components/cards/ProductCard";
 
-import useProductSubCategory from "../../../hooks/useProductSubCategory";
 import { useLocation } from "react-router-dom";
 import SkeletonCard from "../../../components/cards/SkeletonCard";
+import { toast } from "react-toastify";
 
+import fetchProductsService from "../../../services/fetchProductsService";
+import { Product } from "../../../types/types";
 const RelatedProduct: React.FC<{
 	subCategory: string;
 	productId: string | undefined;
@@ -12,10 +14,31 @@ const RelatedProduct: React.FC<{
 	// retrieve the category
 
 	const url = useLocation().pathname;
-	const category = url.split("/")[2];
+	const category = url.split("/")[2] as "Women" | "Men";
 
 	// fetch sub category products
-	const relatedProducts = useProductSubCategory(category, subCategory) || [];
+
+	const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+
+	// fetch related products
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await fetchProductsService(category, 0, subCategory);
+
+				if (response.data.success) {
+					const products = await response.data.product;
+					setRelatedProducts(products);
+				}
+			} catch (error) {
+				let message;
+				if (error instanceof Error) message = error.message;
+				else message = String(error);
+				toast.error(message);
+			}
+		};
+		fetchData();
+	}, [subCategory]);
 
 	// filter already shown products
 
