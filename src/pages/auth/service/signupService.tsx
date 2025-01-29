@@ -1,9 +1,15 @@
 import axios from "axios";
 import { backendUrl } from "../../../App";
 
-const signupService = async (name: string, email: string, password: string) => {
+const signupService = async (
+	firstName: string,
+	lastName: string,
+	email: string,
+	password: string
+) => {
 	const response = await axios.post(backendUrl + "/api/user/register", {
-		name,
+		firstName,
+		lastName,
 		email,
 		password,
 	});

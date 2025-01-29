@@ -32,7 +32,7 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
 		<div className="border-y flex items-center p-4">
 			{!editAddress && userState.address.postcode ? (
 				<div className=" flex flex-col">
-					<p>{userState.name.toUpperCase()}</p>
+					<p>{userState.firstName.toUpperCase()}</p>
 					<p>{userState.address.street}</p>
 					<p>{userState.address.town}</p>
 					<p>{userState.address.postcode}</p>

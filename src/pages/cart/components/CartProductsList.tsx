@@ -22,13 +22,18 @@ const CartProductsList: React.FC<{
 	const token = useAppSelector(state => state.tokenReducer.token);
 
 	const dispatch = useAppDispatch();
+
+	//
 	const handleRemoveProduct = async (id: string) => {
-		if (!token) return;
-
 		try {
-			const response = await removeProductService(token, id);
+			// remove product from cart backend if signed in
+			if (token) {
+				const response = await removeProductService(token, id);
 
-			if (response.data.success) {
+				if (response.data.success) {
+					dispatch(removeProduct(id));
+				}
+			} else {
 				dispatch(removeProduct(id));
 			}
 		} catch (error) {

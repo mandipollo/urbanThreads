@@ -1,4 +1,4 @@
-import { backendUrl } from "../App";
+import { backendUrl } from "../../../App";
 import axios from "axios";
 
 const placeOrderService = async (token: string) => {

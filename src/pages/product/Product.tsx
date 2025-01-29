@@ -70,23 +70,33 @@ const Product: React.FC = () => {
 	) => {
 		try {
 			const productExists = cartItemState.some(item => item._id === productId);
+
+			//
 			if (!productExists) {
-				const response = await axios.post(
-					backendUrl + "/api/user/addToCart",
-					{
-						productId,
-						size,
-					},
-					{
-						headers: {
-							Authorization: `Bearer ${token}`,
+				if (token) {
+					// if user is signed in , dispatch data to backend
+					const response = await axios.post(
+						backendUrl + "/api/user/addToCart",
+						{
+							productId,
+							size,
 						},
+						{
+							headers: {
+								Authorization: `Bearer ${token}`,
+							},
+						}
+					);
+					if (response.data.success) {
+						dispatch(addProduct({ ...product, size }));
+						toast("Product added to cart!");
 					}
-				);
-				if (response.data.success) {
+				} else {
 					dispatch(addProduct({ ...product, size }));
 					toast("Product added to cart!");
 				}
+
+				// guest - save product to cart slice
 			} else {
 				toast("Product already added to cart");
 			}

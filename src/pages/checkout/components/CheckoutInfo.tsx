@@ -9,10 +9,12 @@ import Button from "../../../components/ui/Button";
 
 import { useAppDispatch } from "../../../store/store";
 import { removeProduct } from "../../../store/cartSlice";
+import { Link } from "react-router-dom";
 
 interface CheckOutInfoProps {
 	userState: {
-		name: string;
+		firstName: string;
+		lastName: string;
 		email: string;
 		address: {
 			street: string;
@@ -20,6 +22,14 @@ interface CheckOutInfoProps {
 			postcode: string;
 		};
 	};
+	firstName: string;
+	setFirstName: React.Dispatch<SetStateAction<string>>;
+	lastName: string;
+	setLastName: React.Dispatch<SetStateAction<string>>;
+	email: string;
+	setEmail: React.Dispatch<SetStateAction<string>>;
+	editGuest: boolean;
+	setEditGuest: React.Dispatch<SetStateAction<boolean>>;
 	street: string;
 	setStreet: React.Dispatch<SetStateAction<string>>;
 	town: string;
@@ -32,6 +42,14 @@ interface CheckOutInfoProps {
 	cartItems: CartProduct[];
 }
 const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
+	firstName,
+	setFirstName,
+	lastName,
+	setLastName,
+	email,
+	setEmail,
+	editGuest,
+	setEditGuest,
 	userState,
 	street,
 	setStreet,
@@ -53,82 +71,67 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	return (
 		<div
 			aria-label="personal user information section"
-			className="flex flex-col text-sm"
+			className="flex flex-col text-sm font-normal gap-2"
 		>
-			<div className="border-b flex flex-col pb-10">
-				<h3 className="font-normal text-base">MY INFORMATION</h3>
-				<p>{userState.name}</p>
-				<p>{userState.email}</p>
+			<div className="flex flex-col gap-2">
+				<div className="flex justify-between">
+					<h4 className="text-xl">Contact</h4>
+					<Link to="/user-auth" className="underline underline-offset-2">
+						Log in
+					</Link>
+				</div>
+
+				<input
+					onChange={e => setEmail(e.target.value)}
+					placeholder="Email"
+					className="w-full p-4 rounded-md border placeholder:text-black"
+					type="email"
+					value={email}
+				/>
 			</div>
 
-			<h3 className="font-normal py-2 text-base">DELIVERY ADDRESS</h3>
-
-			{!editAddress && userState.address.postcode ? (
-				<div className="border-b flex flex-col pb-10">
-					<p>{userState.address.street}</p>
-					<p>{userState.address.town}</p>
-					<p>{userState.address.postcode}</p>
-					<div>
-						<button
-							type="button"
-							aria-label="Show address edit form"
-							onClick={() => setEditAddress(!editAddress)}
-							className="underline p-2"
-						>
-							EDIT
-						</button>
-					</div>
+			<h4 className="text-xl">Delivery</h4>
+			<form className="flex flex-col gap-2">
+				<div className="flex flex-row gap-2">
+					<input
+						className="w-full p-4 rounded-md border placeholder:text-black"
+						type="text"
+						placeholder="First name"
+						value={firstName}
+						onChange={e => setFirstName(e.target.value)}
+					/>
+					<input
+						className="w-full p-4 rounded-md border placeholder:text-black"
+						type="text"
+						placeholder="Last name"
+						value={lastName}
+						onChange={e => setLastName(e.target.value)}
+					/>
 				</div>
-			) : (
-				<form
-					onSubmit={handleAddressUpdate}
-					className="flex flex-col space-y-4 pt-4"
-				>
-					<div className="flex flex-col">
-						<label htmlFor="street">Street</label>
-						<input
-							value={street}
-							onChange={e => setStreet(e.target.value)}
-							id="street"
-							type="text"
-							className="p-4 border focus:outline-black outline-1"
-						/>
-					</div>
-
-					<div className="flex flex-col">
-						<label htmlFor="town_city">Town/City</label>
-						<input
-							value={town}
-							onChange={e => setTown(e.target.value)}
-							id="town_city"
-							type="text"
-							className="p-4 border focus:outline-black outline-1"
-						/>
-						<label htmlFor="postcode">Postcode</label>
-					</div>
-
-					<div className="flex flex-col">
-						<input
-							value={postcode}
-							onChange={e => setPostcode(e.target.value)}
-							id="postcode"
-							type="text"
-							className="p-4 border focus:outline-black outline-1"
-						/>
-						<p className="text-sm">Capital letters only E.g. GU14 8TJ</p>
-					</div>
-
-					<Button text="SAVE" type="submit" />
-					<button
-						aria-label="Cancel changes"
-						onClick={() => setEditAddress(false)}
-						className="border border-black p-4 hover:text-gray-600"
-						type="button"
-					>
-						CANCEL
-					</button>
-				</form>
-			)}
+				<input
+					className="w-full p-4 rounded-md border placeholder:text-black"
+					type="text"
+					placeholder="Street"
+					value={street}
+					onChange={e => setStreet(e.target.value)}
+				/>
+				<div className="flex flex-row gap-2">
+					<input
+						className="w-full p-4 rounded-md border placeholder:text-black"
+						type="text"
+						placeholder="Town"
+						value={town}
+						onChange={e => setTown(e.target.value)}
+					/>
+					<input
+						className="w-full p-4 rounded-md border placeholder:text-black"
+						type="text"
+						placeholder="Postcode"
+						value={postcode}
+						onChange={e => setPostcode(e.target.value)}
+					/>
+				</div>
+			</form>
 
 			<div className="flex flex-col gap-2">
 				<h3 className="font-normal py-2 text-base">PARCEL</h3>

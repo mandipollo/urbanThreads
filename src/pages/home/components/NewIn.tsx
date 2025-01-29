@@ -56,7 +56,6 @@ const NewIn: React.FC = () => {
 						}}
 						modules={[Navigation, A11y]}
 						spaceBetween={8}
-						onSwiper={swiper => console.log(swiper)}
 					>
 						{latestProducts.map(product => (
 							<SwiperSlide key={product._id}>

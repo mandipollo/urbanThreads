@@ -17,20 +17,32 @@ const Signup: React.FC<{
 
 	//
 
-	const [name, setName] = useState<string>("");
+	const [firstName, setFirstName] = useState<string>("");
+	const [lastName, setLastName] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsLoading(true);
 		try {
-			if (!name || !email || !password || password.length < 8) {
+			if (
+				!firstName ||
+				lastName ||
+				!email ||
+				!password ||
+				password.length < 8
+			) {
 				throw new Error(
 					"Please provide valid inputs. Password must be at least 8 characters long."
 				);
 			}
 
-			const response = await signupService(name, email, password);
+			const response = await signupService(
+				firstName,
+				lastName,
+				email,
+				password
+			);
 
 			if (response.data.success) {
 				toast("User registered successfully");
@@ -60,11 +72,23 @@ const Signup: React.FC<{
 					className="flex w-96 flex-col gap-4 shadow-md p-10 border"
 				>
 					<div className="flex flex-col gap-2">
-						<label htmlFor="name">Name </label>
+						<label htmlFor="first_name">First name </label>
 						<input
-							onChange={e => setName(e.target.value)}
-							value={name}
-							id="name"
+							onChange={e => setFirstName(e.target.value)}
+							value={firstName}
+							id="first_name"
+							className="border p-2 "
+							type="text"
+							placeholder="Luke"
+							required
+						/>
+					</div>
+					<div className="flex flex-col gap-2">
+						<label htmlFor="last_name">Last name </label>
+						<input
+							onChange={e => setLastName(e.target.value)}
+							value={lastName}
+							id=" last_name"
 							className="border p-2 "
 							type="text"
 							placeholder="Skywalker"

@@ -12,15 +12,14 @@ import Meta from "../../components/shared/Meta";
 const Cart: React.FC = () => {
 	const cartState = useAppSelector(state => state.cartReducer);
 
-	// redirect user to login if user not signed in or navigaet to checkout page
+	// navigate user to checkout if signed in or assing a token to guest user
 	const navigate = useNavigate();
 	const token = useAppSelector(state => state.tokenReducer.token);
-
+	const cartItems = useAppSelector(state => state.cartReducer.items);
+	// navigate to checkout if cart has products
 	const handleCheckout = () => {
-		if (token) {
+		if (cartItems.length > 0) {
 			navigate("/checkout");
-		} else {
-			navigate("/userAuth");
 		}
 	};
 	return (
@@ -40,7 +39,8 @@ const Cart: React.FC = () => {
 				</div>
 
 				<ActionSummary
-					action="CONTINUE TO CHECKOUT"
+					token={token}
+					action={token ? "CONTINUE TO CHECKOUT" : "CHECKOUT AS GUEST"}
 					cartTotal={cartState.total}
 					callback={handleCheckout}
 				/>

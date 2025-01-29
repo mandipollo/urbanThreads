@@ -40,7 +40,8 @@ const Login: React.FC<{
 			}
 			const response = await loginService(email, password);
 			if (response.data.success) {
-				const { token, name, email, address, cart } = response.data;
+				const { token, firstName, lastName, email, address, cart } =
+					response.data;
 
 				// modify the cart data
 
@@ -50,7 +51,7 @@ const Login: React.FC<{
 				});
 				dispatch(initializeCart(modifiedCart));
 				dispatch(setToken(token));
-				dispatch(setUser({ name, email, address }));
+				dispatch(setUser({ firstName, lastName, email, address }));
 				navigate("/account");
 			} else {
 				throw new Error(
