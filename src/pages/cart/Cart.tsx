@@ -1,25 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 
 // state & router
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../store/store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
 // components
 import CartProducts from "./components/CartProducts";
 import ActionSummary from "../../components/shared/ActionSummary";
 import Meta from "../../components/shared/Meta";
+import createGuestService from "./service/createGuestService";
+import { setGuestToken } from "../../store/tokenSlice";
+import { toast } from "react-toastify";
 
 const Cart: React.FC = () => {
-	const cartState = useAppSelector(state => state.cartReducer);
-
-	// navigate user to checkout if signed in or assing a token to guest user
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+
+	const cartState = useAppSelector(state => state.cartReducer);
 	const token = useAppSelector(state => state.tokenReducer.token);
+	const guestToken = useAppSelector(state => state.tokenReducer.guestToken);
+
 	const cartItems = useAppSelector(state => state.cartReducer.items);
-	// navigate to checkout if cart has products
-	const handleCheckout = () => {
-		if (cartItems.length > 0) {
-			navigate("/checkout");
+
+	//
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+	// direct user to checkout if products in cart
+	// guest user assign a token and direct to checkout
+
+	const handleCheckout = async () => {
+		// check if cart has items
+
+		if (cartItems.length <= 0) {
+			return toast.error("Your cart is empty");
+		}
+
+		try {
+			setIsSubmitting(true);
+
+			// when user is signed in
+
+			if (token && !guestToken) {
+				navigate("/checkout");
+			} else {
+				// handle guest user
+
+				// create a temp array of objects with product id
+
+				const cartData = cartItems.map(item => ({
+					productId: item._id,
+					size: item.size,
+				}));
+				// create temp guest data and return a token
+				const response = await createGuestService({ cartData });
+
+				if (response.data.success) {
+					dispatch(setGuestToken(response.data.guestToken));
+					navigate("/checkout");
+				}
+			}
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			toast.error(message);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 	return (
@@ -39,6 +83,7 @@ const Cart: React.FC = () => {
 				</div>
 
 				<ActionSummary
+					isSubmitting={isSubmitting}
 					token={token}
 					action={token ? "CONTINUE TO CHECKOUT" : "CHECKOUT AS GUEST"}
 					cartTotal={cartState.total}

@@ -37,16 +37,10 @@ const CartSummary: React.FC = () => {
 							<p>ORDER VALUE</p>
 							<PriceSpan price={cartState.total} />
 						</div>
-						<Link
-							aria-label="Link to checkout page"
-							className="border text-center p-2 bg-black text-white"
-							to="/checkout"
-						>
-							CHECKOUT
-						</Link>
+
 						<Link
 							aria-label="Link to shopping cart page"
-							className="border text-center p-2 bg-white "
+							className="border text-center bg-black p-2 text-white "
 							to="/cart"
 						>
 							SHOPPING BAG

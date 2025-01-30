@@ -3,19 +3,21 @@ import React from "react";
 // components
 import PriceSpan from "../ui/PriceSpan";
 import PaymentMerchantsSection from "./PaymentMerchantsSection";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface ActionSummaryProps {
 	cartTotal: number;
 	callback?: () => void;
 	action: string;
 	token: string | null;
+	isSubmitting: boolean;
 }
 const ActionSummary: React.FC<ActionSummaryProps> = ({
 	cartTotal,
 	callback,
 	action,
 	token,
+	isSubmitting,
 }) => {
 	const { pathname } = useLocation();
 	const totalPrice = cartTotal > 100 ? cartTotal : cartTotal + 3.99;
@@ -45,12 +47,20 @@ const ActionSummary: React.FC<ActionSummaryProps> = ({
 				</div>
 
 				<button
+					disabled={isSubmitting}
 					type="button"
 					onClick={() => callback && callback()}
 					className="bg-black hover:bg-stone-800 text-white px-2  py-4"
 				>
 					{action}
 				</button>
+
+				{pathname === "/cart" && !token && (
+					<Link to="/user-auth" className="border px-2 text-center py-4">
+						LOG IN
+					</Link>
+				)}
+
 				<PaymentMerchantsSection />
 				<p className="text-sm">
 					Prices and delivery costs are not confirmed until you've reached the

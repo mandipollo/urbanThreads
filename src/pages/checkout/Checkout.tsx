@@ -10,26 +10,29 @@ import PaymentMethod from "./components/PaymentMethod";
 
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { updateAddress } from "../../store/userSlice";
-import { resetAll } from "../../store/cartSlice";
+import { resetCartAll } from "../../store/cartSlice";
 
 // api
 import placeOrderService from "./service/placeOrderService";
 import handleAdressUpdateService from "../../services/handleAdressUpdateService";
 import Meta from "../../components/shared/Meta";
+import placeOrderGuestService from "./service/placeOrderGuestService";
+import { removeGuestToken } from "../../store/tokenSlice";
 
 const Checkout = () => {
+	//
+	const dispatch = useAppDispatch();
 	// cart state
 	const cartState = useAppSelector(state => state.cartReducer);
 
-	const dispatch = useAppDispatch();
-
 	// user state
 	const userState = useAppSelector(state => state.userReducer);
-
 	const token = useAppSelector(state => state.tokenReducer.token);
+	const guestToken = useAppSelector(state => state.tokenReducer.guestToken);
 
 	// handle name , email
 
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [firstName, setFirstName] = useState<string>(userState.firstName || "");
 	const [lastName, setLastName] = useState<string>(userState.lastName || "");
 
@@ -79,29 +82,74 @@ const Checkout = () => {
 
 	const [paymentMethod, setPaymentMethod] = useState<"COD" | "CARD">("COD");
 
-	// handle place order and if successful remove cart items from redux
+	// handle place order if signed in user or guest user , clear cart if successful order
 
 	const handlePlaceorder = async () => {
-		if (!token) return;
+		// throw error if no token or guestToken
+		if (!token && !guestToken) {
+			return toast.error("Please sign in to place order!");
+		}
 
-		try {
-			if (cartState.items.length <= 0) {
-				throw new Error("Please add items to cart!");
-			}
-			const response = await placeOrderService(token);
-			console.log(response);
+		// check if cart has items
+		if (cartState.items.length <= 0) {
+			return toast.error("Please add items to cart!");
+		}
 
-			if (response.data.success) {
-				dispatch(resetAll());
-				toast("Order successfull");
+		// helper function
+
+		const handleApiCall = async (
+			apiCall: () => Promise<{ data: { success: boolean } }>,
+			successCallback: () => void
+		) => {
+			setIsSubmitting(true);
+
+			try {
+				const response = await apiCall();
+
+				console.log(response);
+
+				if (response.data.success) {
+					successCallback();
+					toast("Order successful");
+				}
+			} catch (error) {
+				const message = error instanceof Error ? error.message : String(error);
+				toast.error(message);
+			} finally {
+				setIsSubmitting(false);
 			}
-		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
-			toast.error(message);
+		};
+		// Signed in user flow
+
+		if (token && !guestToken) {
+			handleApiCall(
+				() => placeOrderService(token),
+				() => dispatch(resetCartAll())
+			);
+		}
+
+		// Guest user flow
+
+		if (!token && guestToken) {
+			handleApiCall(
+				() =>
+					placeOrderGuestService({
+						guestToken,
+						email,
+						firstName,
+						lastName,
+						street,
+						town,
+						postcode,
+					}),
+				() => {
+					dispatch(resetCartAll());
+					dispatch(removeGuestToken());
+				}
+			);
 		}
 	};
+
 	return (
 		<section className="flex flex-col h-full w-full p-4 min-h-screen">
 			<Meta
@@ -140,6 +188,7 @@ const Checkout = () => {
 				</div>
 
 				<ActionSummary
+					isSubmitting={isSubmitting}
 					token={token}
 					callback={handlePlaceorder}
 					action="COMPLETE PURCHASE"

@@ -7,7 +7,7 @@ import passwordValidator from "../../utilities/passwordValidator";
 // redux state
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { removeToken } from "../../store/tokenSlice";
-import { resetAll } from "../../store/cartSlice";
+import { resetCartAll } from "../../store/cartSlice";
 import { resetUser, updateAddress } from "../../store/userSlice";
 // api
 import handleAdressUpdateService from "../../services/handleAdressUpdateService";
@@ -92,7 +92,7 @@ const AccountSettings = () => {
 	// remove all local states when user logs off
 	const handleSignout = () => {
 		dispatch(removeToken());
-		dispatch(resetAll());
+		dispatch(resetCartAll());
 		dispatch(resetUser());
 		navigate("/user-auth");
 	};

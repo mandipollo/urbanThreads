@@ -7,7 +7,11 @@ import { toast } from "react-toastify";
 
 // slider
 
-import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation } from "swiper/modules";
 import SwiperNavButtons from "../../../components/shared/SwiperNavButtons";
