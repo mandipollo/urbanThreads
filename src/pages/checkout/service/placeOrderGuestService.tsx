@@ -21,7 +21,7 @@ const placeOrderGuestService = async ({
 	postcode,
 }: PlaceOrderGuestServiceProps) => {
 	const response = await axios.post(
-		backendUrl + "/api/guest/place-order-guest",
+		backendUrl + "/api/order/place-order-guest",
 		{
 			email,
 			firstName,

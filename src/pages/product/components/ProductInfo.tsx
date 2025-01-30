@@ -52,7 +52,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
 							type="button"
 							className="hover:bg-[#343434] bg-black text-white w-full py-4 disabled:cursor-not-allowed "
 						>
-							ADD
+							ADD TO BAG
 						</button>
 					)}
 				</div>

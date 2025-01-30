@@ -9,17 +9,15 @@ import PaymentMethod from "./components/PaymentMethod";
 // state
 
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { updateAddress } from "../../store/userSlice";
 import { resetCartAll } from "../../store/cartSlice";
 
 // api
 import placeOrderService from "./service/placeOrderService";
-import handleAdressUpdateService from "../../services/handleAdressUpdateService";
 import Meta from "../../components/shared/Meta";
 import placeOrderGuestService from "./service/placeOrderGuestService";
 import { removeGuestToken } from "../../store/tokenSlice";
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
 	//
 	const dispatch = useAppDispatch();
 	// cart state
@@ -30,53 +28,17 @@ const Checkout = () => {
 	const token = useAppSelector(state => state.tokenReducer.token);
 	const guestToken = useAppSelector(state => state.tokenReducer.guestToken);
 
-	// handle name , email
+	//
 
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [firstName, setFirstName] = useState<string>(userState.firstName || "");
 	const [lastName, setLastName] = useState<string>(userState.lastName || "");
-
 	const [email, setEmail] = useState<string>(userState.email || "");
-	const [editGuest, setEditGuest] = useState<boolean>(false);
-
-	// handle address update and sync the details with redux
-
-	// state address
-	const [editAddress, setEditAddress] = useState<boolean>(false);
 	const [street, setStreet] = useState<string>(userState.address.street || "");
 	const [town, setTown] = useState<string>(userState.address.town || "");
 	const [postcode, setPostcode] = useState<string>(
 		userState.address.postcode || ""
 	);
-
-	const handleAddressUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		try {
-			// logged in user
-			if (token) {
-				const response = await handleAdressUpdateService(
-					street,
-					town,
-					postcode,
-					token
-				);
-
-				if (response.data.success) {
-					dispatch(updateAddress({ street, town, postcode }));
-				}
-			}
-			// guest user
-			else {
-				dispatch(updateAddress({ street, town, postcode }));
-			}
-		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
-			toast.error(message);
-		}
-	};
 
 	// payment method
 
@@ -110,7 +72,7 @@ const Checkout = () => {
 
 				if (response.data.success) {
 					successCallback();
-					toast("Order successful");
+					toast.success("Order successful");
 				}
 			} catch (error) {
 				const message = error instanceof Error ? error.message : String(error);
@@ -123,7 +85,16 @@ const Checkout = () => {
 
 		if (token && !guestToken) {
 			handleApiCall(
-				() => placeOrderService(token),
+				() =>
+					placeOrderService({
+						token,
+						email,
+						firstName,
+						lastName,
+						street,
+						town,
+						postcode,
+					}),
 				() => dispatch(resetCartAll())
 			);
 		}
@@ -159,19 +130,16 @@ const Checkout = () => {
 			/>
 			<h2 className="text-5xl font-semibold py-10">CHECKOUT</h2>
 			<div className="flex flex-col gap-10 md:flex-row flex-1 relative">
-				<div className="flex flex-col w-3/5 gap-10">
+				<div className="flex flex-col w-full md:w-3/5 gap-10">
 					<CheckoutInfo
+						guestToken={guestToken}
 						firstName={firstName}
 						setFirstName={setFirstName}
 						lastName={lastName}
 						setLastName={setLastName}
 						email={email}
 						setEmail={setEmail}
-						editGuest={editGuest}
-						setEditGuest={setEditGuest}
 						cartItems={cartState.items}
-						setEditAddress={setEditAddress}
-						editAddress={editAddress}
 						userState={userState}
 						street={street}
 						setStreet={setStreet}
@@ -179,7 +147,6 @@ const Checkout = () => {
 						setTown={setTown}
 						postcode={postcode}
 						setPostcode={setPostcode}
-						handleAddressUpdate={handleAddressUpdate}
 					/>
 					<PaymentMethod
 						paymentMethod={paymentMethod}

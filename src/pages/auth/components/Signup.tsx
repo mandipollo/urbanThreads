@@ -5,7 +5,7 @@ import signupService from "../service/signupService";
 import { toast } from "react-toastify";
 
 const Signup: React.FC<{
-	signupRef: React.RefObject<HTMLDivElement>;
+	signupRef: React.RefObject<HTMLDivElement | null>;
 	signinInView: () => void;
 }> = ({ signupRef, signinInView }) => {
 	//

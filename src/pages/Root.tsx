@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // state && routes
 import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../store/store";
-import { ToastContainer } from "react-toastify";
+import { Slide, ToastContainer } from "react-toastify";
 //component
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/footer/Footer";
@@ -31,7 +31,19 @@ const Root = () => {
 	}, [hamburgerMenu]);
 	return (
 		<main className="flex w-full relative flex-col min-h-screen ">
-			<ToastContainer />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={true}
+				closeOnClick={true}
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+				theme="colored"
+				transition={Slide}
+			/>
 
 			<Navbar
 				token={token}

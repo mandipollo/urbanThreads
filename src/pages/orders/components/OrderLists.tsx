@@ -65,7 +65,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 									className="grid grid-cols-1 gap-2 sm:grid-cols-[2fr_1fr]  items-center p-2"
 									key={index}
 								>
-									<div className="flex flex-row items-center gap-2">
+									<div className="flex flex-col sm:flex-row items-center gap-2">
 										<figure>
 											<img
 												src={item.image}

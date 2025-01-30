@@ -2,8 +2,6 @@ import React, { SetStateAction } from "react";
 
 // types
 import { CartProduct } from "../../../types/types";
-// components
-import Button from "../../../components/ui/Button";
 
 // state
 
@@ -28,18 +26,15 @@ interface CheckOutInfoProps {
 	setLastName: React.Dispatch<SetStateAction<string>>;
 	email: string;
 	setEmail: React.Dispatch<SetStateAction<string>>;
-	editGuest: boolean;
-	setEditGuest: React.Dispatch<SetStateAction<boolean>>;
 	street: string;
 	setStreet: React.Dispatch<SetStateAction<string>>;
 	town: string;
 	setTown: React.Dispatch<SetStateAction<string>>;
 	postcode: string;
 	setPostcode: React.Dispatch<SetStateAction<string>>;
-	handleAddressUpdate: (e: React.FormEvent<HTMLFormElement>) => void;
-	editAddress: boolean;
-	setEditAddress: React.Dispatch<SetStateAction<boolean>>;
+
 	cartItems: CartProduct[];
+	guestToken?: string | null;
 }
 const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	firstName,
@@ -48,19 +43,14 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 	setLastName,
 	email,
 	setEmail,
-	editGuest,
-	setEditGuest,
-	userState,
 	street,
 	setStreet,
 	town,
 	setTown,
 	postcode,
 	setPostcode,
-	handleAddressUpdate,
-	editAddress,
-	setEditAddress,
 	cartItems,
+	guestToken,
 }) => {
 	// handle product remove from cart
 
@@ -76,9 +66,12 @@ const CheckoutInfo: React.FC<CheckOutInfoProps> = ({
 			<div className="flex flex-col gap-2">
 				<div className="flex justify-between">
 					<h4 className="text-xl">Contact</h4>
-					<Link to="/user-auth" className="underline underline-offset-2">
-						Log in
-					</Link>
+
+					{guestToken && (
+						<Link to="/user-auth" className="underline underline-offset-2">
+							Log in
+						</Link>
+					)}
 				</div>
 
 				<input

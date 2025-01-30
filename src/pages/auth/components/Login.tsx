@@ -14,7 +14,7 @@ import { initializeCart } from "../../../store/cartSlice";
 
 const Login: React.FC<{
 	signupInView: () => void;
-	signinRef: React.RefObject<HTMLDivElement>;
+	signinRef: React.RefObject<HTMLDivElement | null>;
 }> = ({ signupInView, signinRef }) => {
 	//
 	const dispatch = useAppDispatch();
