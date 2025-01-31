@@ -24,7 +24,11 @@ const RelatedProduct: React.FC<{
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetchProductsService(category, 0, subCategory);
+				const response = await fetchProductsService({
+					category,
+					page: 0,
+					subCategory,
+				});
 
 				if (response.data.success) {
 					const products = await response.data.product;
