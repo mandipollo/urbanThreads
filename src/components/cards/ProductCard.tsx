@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCard> = ({ product }) => {
 					/>
 				</figure>
 			</Link>
-			<div className="flex flex-col gap-2 py-2">
+			<div className="flex flex-col gap-2 p-2 ]">
 				<p className="text-xs md:text-sm ">{product.name}</p>
 				<p className="text-xs md:text-sm">£{product.price}</p>
 			</div>

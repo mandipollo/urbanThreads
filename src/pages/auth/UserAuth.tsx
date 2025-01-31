@@ -6,8 +6,8 @@ import Signup from "./components/Signup";
 import Meta from "../../components/shared/Meta";
 
 const UserAuth: React.FC = () => {
-	const signinRef = useRef<null | HTMLDivElement>(null);
-	const signupRef = useRef<null | HTMLDivElement>(null);
+	const signinRef = useRef<HTMLDivElement>(null);
+	const signupRef = useRef<HTMLDivElement>(null);
 	const signupInView = () => {
 		signupRef.current?.scrollIntoView({
 			behavior: "smooth",

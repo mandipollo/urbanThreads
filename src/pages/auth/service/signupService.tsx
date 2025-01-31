@@ -1,12 +1,18 @@
 import axios from "axios";
 import { backendUrl } from "../../../App";
 
-const signupService = async (
-	firstName: string,
-	lastName: string,
-	email: string,
-	password: string
-) => {
+interface SignupServiceProps {
+	firstName: string;
+	lastName: string;
+	email: string;
+	password: string;
+}
+const signupService = async ({
+	firstName,
+	lastName,
+	email,
+	password,
+}: SignupServiceProps) => {
 	const response = await axios.post(backendUrl + "/api/user/register", {
 		firstName,
 		lastName,

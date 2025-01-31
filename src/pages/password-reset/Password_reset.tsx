@@ -28,16 +28,13 @@ const Password_reset = () => {
 			if (newPassword.trim().length < 8) {
 				throw new Error("Passwords needs to be atleast 8 characters long!");
 			}
-			const response = await passwordResetService(token, newPassword);
+			const response = await passwordResetService({ token, newPassword });
 			if (response.data.success) {
-				toast(response.data.message);
-				setNewPassword("");
+				toast.success(response.data.message);
 				navigate("/user-auth");
 			}
 		} catch (error) {
-			let message = "An error occurred.";
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		} finally {
 			setIsLoading(false);

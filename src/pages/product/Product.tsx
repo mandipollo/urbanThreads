@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 
 // misc
 import { toast } from "react-toastify";
-import axios from "axios";
-import { backendUrl } from "../../App";
 
 // hooks
 
@@ -23,7 +21,10 @@ import { addProduct } from "../../store/cartSlice";
 import { useDispatch } from "react-redux";
 import { Product as ProductType } from "../../types/types";
 import { useAppSelector } from "../../store/store";
+
+// service
 import fetchProductService from "./service/fetchProductService";
+import addToCartService from "./service/addToCartService";
 
 const Product: React.FC = () => {
 	const sizes = ["S", "M", "L", "XL", "XXL"];
@@ -40,15 +41,11 @@ const Product: React.FC = () => {
 			try {
 				const response = await fetchProductService(productId);
 
-				if (!response.data.success) {
-					return toast.error(response.data.message);
+				if (response.data.success) {
+					setProduct(response.data.product);
 				}
-
-				setProduct(response.data.product);
 			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
+				const message = error instanceof Error ? error.message : String(error);
 				toast.error(message);
 			}
 		};
@@ -75,35 +72,22 @@ const Product: React.FC = () => {
 			if (!productExists) {
 				if (token) {
 					// if user is signed in , dispatch data to backend
-					const response = await axios.post(
-						backendUrl + "/api/user/addToCart",
-						{
-							productId,
-							size,
-						},
-						{
-							headers: {
-								Authorization: `Bearer ${token}`,
-							},
-						}
-					);
+					const response = await addToCartService({ token, productId, size });
 					if (response.data.success) {
 						dispatch(addProduct({ ...product, size }));
-						toast("Product added to cart!");
+						toast.success("Product added to cart!");
 					}
-				} else {
+				}
+				// guest - save product to cart slice
+				else {
 					dispatch(addProduct({ ...product, size }));
 					toast("Product added to cart!");
 				}
-
-				// guest - save product to cart slice
 			} else {
-				toast("Product already added to cart");
+				toast.info("Product already added to cart");
 			}
 		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		}
 	};

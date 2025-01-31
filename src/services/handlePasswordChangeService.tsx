@@ -1,12 +1,18 @@
 import axios from "axios";
 import { backendUrl } from "../App";
 
-const handlePasswordChangeService = async (
-	currentPassword: string,
-	newPassword: string,
-	confirmPassword: string,
-	token: string
-) => {
+interface handlePasswordChangeServiceProps {
+	currentPassword: string;
+	newPassword: string;
+	confirmPassword: string;
+	token: string;
+}
+const handlePasswordChangeService = async ({
+	currentPassword,
+	newPassword,
+	confirmPassword,
+	token,
+}: handlePasswordChangeServiceProps) => {
 	const response = await axios.put(
 		backendUrl + "/api/user/change-password",
 		{

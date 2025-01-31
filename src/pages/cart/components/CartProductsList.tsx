@@ -28,7 +28,7 @@ const CartProductsList: React.FC<{
 		try {
 			// remove product from cart backend if signed in
 			if (token) {
-				const response = await removeProductService(token, id);
+				const response = await removeProductService({ token, id });
 
 				if (response.data.success) {
 					dispatch(removeProduct(id));
@@ -37,9 +37,7 @@ const CartProductsList: React.FC<{
 				dispatch(removeProduct(id));
 			}
 		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		}
 	};
@@ -47,12 +45,24 @@ const CartProductsList: React.FC<{
 		<ul className="flex flex-col gap-2">
 			{cartItems.map(item => (
 				<li key={item._id} className="flex gap-2 flex-row">
-					<figure className="h-full w-40">
+					<figure className="h-full w-40 relative">
 						<img
 							src={item.image[0]}
 							alt={item.name}
 							className="h-full w-full aspect-[3/4]"
 						/>
+						<button
+							onClick={() => handleRemoveProduct(item._id)}
+							className="absolute bg-white p-4 bottom-0 left-0 "
+						>
+							<figure className=" h-4 w-4 ">
+								<img
+									src="/svg/bin.svg"
+									alt="remove item from the cart"
+									className="h-full w-full object-cover"
+								/>
+							</figure>
+						</button>
 					</figure>
 					<div className="flex flex-col space-y-2 w-full">
 						<div>
@@ -61,22 +71,6 @@ const CartProductsList: React.FC<{
 						</div>
 
 						<p>Size {item.size}</p>
-
-						<div>
-							<button
-								aria-label={`Remove ${item.name} from cart`}
-								onClick={() => handleRemoveProduct(item._id)}
-								className="border p-2"
-							>
-								<figure className="h-4 w-4">
-									<img
-										src="/svg/close.svg"
-										alt="Close"
-										className="h-full w-full object-cover"
-									/>
-								</figure>
-							</button>
-						</div>
 					</div>
 				</li>
 			))}

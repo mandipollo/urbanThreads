@@ -27,7 +27,7 @@ const Signup: React.FC<{
 		try {
 			if (
 				!firstName ||
-				lastName ||
+				!lastName ||
 				!email ||
 				!password ||
 				password.length < 8
@@ -37,25 +37,19 @@ const Signup: React.FC<{
 				);
 			}
 
-			const response = await signupService(
+			const response = await signupService({
 				firstName,
 				lastName,
 				email,
-				password
-			);
+				password,
+			});
 
 			if (response.data.success) {
 				toast("User registered successfully");
 				signinInView();
-			} else {
-				throw new Error(
-					response.data.message || "Login failed. Please try again."
-				);
 			}
 		} catch (error) {
-			let message = "An error occurred.";
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		} finally {
 			setIsLoading(false);

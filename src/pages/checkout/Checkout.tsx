@@ -68,8 +68,6 @@ const Checkout: React.FC = () => {
 			try {
 				const response = await apiCall();
 
-				console.log(response);
-
 				if (response.data.success) {
 					successCallback();
 					toast.success("Order successful");

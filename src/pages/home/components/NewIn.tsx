@@ -28,9 +28,7 @@ const NewIn: React.FC = () => {
 					setLatestProducts(fetchedProducts);
 				}
 			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
+				const message = error instanceof Error ? error.message : String(error);
 				toast.error(message);
 			}
 		};

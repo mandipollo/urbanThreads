@@ -23,9 +23,7 @@ const Orders = () => {
 					setOrders(response.data.orderDetails);
 				}
 			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
+				const message = error instanceof Error ? error.message : String(error);
 				toast.error(message);
 			}
 		};

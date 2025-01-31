@@ -1,6 +1,6 @@
 import HoverRevealButton from "../ui/HoverRevealButton";
 
-const Footer = ({}) => {
+const Footer = () => {
 	return (
 		<footer
 			aria-labelledby="footer-label"

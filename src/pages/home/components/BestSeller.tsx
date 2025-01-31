@@ -15,13 +15,9 @@ const BestSeller: React.FC = () => {
 				if (response.data.success) {
 					const fetchedProducts: Product[] = response.data.bestsellerProducts;
 					setBestsellerProducts(fetchedProducts);
-				} else {
-					toast.error(response.data.message);
 				}
 			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
+				const message = error instanceof Error ? error.message : String(error);
 				toast.error(message);
 			}
 		};

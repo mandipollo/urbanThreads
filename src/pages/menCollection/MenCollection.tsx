@@ -33,7 +33,11 @@ const MenCollection: React.FC = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetchProductsService("Men", page, subCategory);
+				const response = await fetchProductsService({
+					category: "Men",
+					page,
+					subCategory,
+				});
 
 				if (response.data.success) {
 					const products = await response.data.product;
@@ -41,9 +45,7 @@ const MenCollection: React.FC = () => {
 					setTotalPages(response.data.totalPages);
 				}
 			} catch (error) {
-				let message;
-				if (error instanceof Error) message = error.message;
-				else message = String(error);
+				const message = error instanceof Error ? error.message : String(error);
 				toast.error(message);
 			}
 		};

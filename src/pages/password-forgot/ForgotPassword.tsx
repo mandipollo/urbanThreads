@@ -26,9 +26,7 @@ const ForgotPassword = () => {
 				navigate("/password-reset");
 			}
 		} catch (error) {
-			let message = "An error occurred.";
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		} finally {
 			setIsLoading(false);

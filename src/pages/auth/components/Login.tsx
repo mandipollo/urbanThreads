@@ -29,6 +29,8 @@ const Login: React.FC<{
 	//
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+
+	//
 	const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsLoading(true);
@@ -38,7 +40,7 @@ const Login: React.FC<{
 					"Please provide valid inputs. Password must be at least 8 characters long."
 				);
 			}
-			const response = await loginService(email, password);
+			const response = await loginService({ email, password });
 			if (response.data.success) {
 				const { token, firstName, lastName, email, address, cart } =
 					response.data;
@@ -53,15 +55,9 @@ const Login: React.FC<{
 				dispatch(setToken(token));
 				dispatch(setUser({ firstName, lastName, email, address }));
 				navigate("/account");
-			} else {
-				throw new Error(
-					response.data.message || "Login failed. Please try again."
-				);
 			}
 		} catch (error) {
-			let message = "An error occurred.";
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		} finally {
 			setIsLoading(false);

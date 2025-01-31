@@ -40,20 +40,18 @@ const AccountSettings = () => {
 			if (!token) {
 				throw new Error("Token missing");
 			}
-			const response = await handleAdressUpdateService(
+			const response = await handleAdressUpdateService({
 				street,
 				town,
 				postcode,
-				token
-			);
+				token,
+			});
 
 			if (response.data.success) {
 				dispatch(updateAddress({ street, town, postcode }));
 			}
 		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
 			toast.error(message);
 		}
 	};
@@ -72,20 +70,20 @@ const AccountSettings = () => {
 			}
 
 			if (passwordValidator(currentPassword, newPassword, confirmPassword)) {
-				const response = await handlePasswordChangeService(
+				const response = await handlePasswordChangeService({
 					currentPassword,
 					newPassword,
 					confirmPassword,
-					token
-				);
+					token,
+				});
 				if (response.data.success) {
 					setEditPassword(!editPassword);
+					toast.success("Password updated!");
 				}
 			}
 		} catch (error) {
-			let message;
-			if (error instanceof Error) message = error.message;
-			else message = String(error);
+			const message = error instanceof Error ? error.message : String(error);
+			toast.error(message);
 			setError(message);
 		}
 	};

@@ -28,10 +28,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 		<div className="flex w-full h-full text-xs lg:text-sm">
 			<ul className="flex flex-col w-full gap-2 max-w-7xl">
 				{sortedOrder.map(order => (
-					<li
-						className="flex flex-col w-full border rounded-md"
-						key={order.orderId}
-					>
+					<li className="flex flex-col w-full border" key={order.orderId}>
 						<div className="bg-[#EFF2F2] p-2 flex flex-col lg:flex-row justify-between">
 							<div className="flex gap-2 lg:gap-6">
 								<div>
@@ -51,7 +48,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 							</div>
 
 							<div>
-								<p> ORDER NO</p>
+								<p className="font-normal"> ORDER NO</p>
 								<p className="text-sm">#{order.orderId}</p>
 							</div>
 						</div>
@@ -70,7 +67,7 @@ const OrderLists: React.FC<OrderListsProps> = ({ orders }) => {
 											<img
 												src={item.image}
 												alt={item.name}
-												className="h-40 lg:h-60 aspect-[3/4] rounded-md"
+												className="h-40 lg:h-60 aspect-[3/4] "
 											/>
 										</figure>
 										<div className=" flex flex-col ">

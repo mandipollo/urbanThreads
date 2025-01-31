@@ -45,21 +45,21 @@ const Category: React.FC<CategoryProps> = ({
 			</section>
 			<section
 				aria-labelledby="filter-heading"
-				className=" flex flex-row overflow-x-scroll scrollbar-hide py-10   max-w-[700px] md:grid  md:grid-flow-col md:grid-rows-2 gap-4 "
+				className=" text-sm flex flex-row overflow-x-scroll scrollbar-hide py-10 max-w-[700px] md:grid  md:grid-flow-col md:grid-rows-2 gap-4 "
 			>
 				<h4 id="filter-heading" className="sr-only">
 					Filter products by subcategory
 				</h4>
 				<button
 					aria-label="render only coats"
-					className={`flex flex-col group border h-ful ${
-						subCategory === "coat" && " border-black "
+					className={`flex flex-col group h-full border  ${
+						subCategory === "coat" ? " border-black " : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("coat")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
-							className="object-cover h-40 w-40"
+							className="w-full h-full object-cover"
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550430/women-coat_h4rsib.webp"
@@ -67,145 +67,147 @@ const Category: React.FC<CategoryProps> = ({
 							}
 							alt="category coat"
 						/>
-						<figcaption className="group-hover:underline">Coats</figcaption>
+						<figcaption className=" group-hover:underline">COATS</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to hoodie"
-					className={`flex flex-col group border h-full  ${
-						subCategory === "hoodie" && " border-black"
+					className={`flex flex-col group h-full border  ${
+						subCategory === "hoodie" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("hoodie")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550430/hoodie-women_w1ojjr.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548286/men-hoodie_j2nb9b.webp"
 							}
-							className="h-40 w-40 object-cover"
+							className="object-cover h-full w-full"
 							alt="category hoodie"
 						/>
-						<figcaption className="group-hover:underline">Hoodie</figcaption>
+						<figcaption className=" group-hover:underline">HOODIE</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to jacket"
 					className={`flex flex-col group border h-full  ${
-						subCategory === "jacket" && " border-black"
+						subCategory === "jacket" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("jacket")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550430/women-jacket_pi4oo1.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548286/men-jacket_fsaoow.webp"
 							}
-							className="object-cover h-40 w-40"
+							className="object-cover h-full w-full"
 							alt="category jacket"
 						/>
-						<figcaption className="group-hover:underline">Jacket</figcaption>
+						<figcaption className="group-hover:underline">JACKET</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to short"
 					className={`flex flex-col group border h-full  ${
-						subCategory === "short" && " border-black"
+						subCategory === "short" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("short")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550431/women-shorts_ij9opi.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548288/men-shorts_ojg57b.webp"
 							}
-							className="object-cover h-40 w-40"
+							className="object-cover h-full w-full"
 							alt="category shorts"
 						/>
-						<figcaption className="group-hover:underline">Shorts</figcaption>
+						<figcaption className="group-hover:underline">SHORTS</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to sneaker"
 					className={`flex flex-col group border h-full  ${
-						subCategory === "sneaker" && " border-black"
+						subCategory === "sneaker" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("sneaker")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src="https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548289/men-sneaker_rpmaem.webp"
-							className="h-40 w-40 object-cover"
+							className="object-cover h-full w-full"
 							alt="category sneaker"
 						/>
-						<figcaption className="group-hover:underline">Sneaker</figcaption>
+						<figcaption className="group-hover:underline">SNEAKER</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to sweatshirt"
 					className={`flex flex-col group border h-full ${
-						subCategory === "sweatshirt" && " border-black"
+						subCategory === "sweatshirt"
+							? " border-black"
+							: "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("sweatshirt")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550431/women-sweatshirt_lvzuob.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548288/men-sweatshirt_gomokk.webp"
 							}
-							className="h-40 w-40 object-cover"
+							className="object-cover h-full w-full"
 							alt="category sweatshirt"
 						/>
 						<figcaption className="group-hover:underline">
-							Sweatshirt
+							SWEATSHIRT
 						</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to trouser"
 					className={`flex flex-col group border h-40 ${
-						subCategory === "trouser" && " border-black"
+						subCategory === "trouser" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("trouser")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550431/women-trousers_gxejm8.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548288/men-trousers_qpbed5.webp"
 							}
-							className="h-40 w-40 object-cover"
+							className="h-full w-full object-cover"
 							alt="category trouser"
 						/>
-						<figcaption className="group-hover:underline">Trouser</figcaption>
+						<figcaption className="group-hover:underline">TROUSER</figcaption>
 					</figure>
 				</button>
 				<button
 					aria-label="set filter to tshirt"
 					className={`flex flex-col group border h-full ${
-						subCategory === "tshirt" && " border-black"
+						subCategory === "tshirt" ? " border-black" : "border-transparent"
 					}  `}
 					onClick={() => setSubCategory("tshirt")}
 				>
-					<figure className="h-40 w-40 flex flex-col">
+					<figure className="h-44 w-44 flex flex-col">
 						<img
 							src={
 								category === "Women"
 									? "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737550431/women-tshirt_cr75np.webp"
 									: "https://res.cloudinary.com/dbg68gzpx/image/upload/v1737548289/men-tshirt_qxhd5j.webp"
 							}
-							className="h-40 w-40 object-cover"
+							className="h-full w-full object-cover"
 							alt="category t-shirt"
 						/>
-						<figcaption className="group-hover:underline">T-Shirt</figcaption>
+						<figcaption className="group-hover:underline">T-SHIRT</figcaption>
 					</figure>
 				</button>
 			</section>
